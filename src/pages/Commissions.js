@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import theme from '../theme';
 import { cssUnitToNumber, urlFriendlyFormat } from '../helper/methods';
 import typesObj from './types/typesObj';
@@ -58,7 +58,7 @@ const Commissions = ({ containerStyle }) => {
       // push a new button to the array
       // its onClick will set commission state to the property name
       buttonArray.push(
-        <li key={label}>
+        <li key={propName}>
           <a
             href={`#${urlFriendlyFormat(label)}`}
             onClick={() => handleTypeButtonClick(propName)}

@@ -22,7 +22,7 @@ const typesObj = {
     label: 'custom wallpaper',
     render: <Types.CustomWallpaper />
   },
-  logos: { label: 'sparkle icons', render: <Types.Logos /> }
+  logos: { label: 'logos', render: <Types.Logos /> }
 };
 
 export default typesObj;
