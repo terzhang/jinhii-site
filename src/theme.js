@@ -54,7 +54,8 @@ const theme = {
     },
     fontSize: '1rem',
     fontWeight: '400'
-  }
+  },
+  input: { fontSize: '1rem', fontWeight: '200', borderRadius: '0 1rem 1rem 0' }
 };
 
 export default theme;

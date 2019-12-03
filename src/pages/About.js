@@ -4,7 +4,6 @@ import theme from '../theme';
 
 const About = ({ containerStyle }) => {
   containerStyle = {
-    ...containerStyle,
     marginLeft: theme.general.margin, // to indent texts a bit
     marginRight: theme.general.margin,
     // position children
@@ -14,7 +13,8 @@ const About = ({ containerStyle }) => {
     gridTemplateAreas: `
     'title' 'image' 'text'
     `,
-    justifyItems: 'center'
+    justifyItems: 'center',
+    ...containerStyle
   };
 
   const paragraphStyle = {

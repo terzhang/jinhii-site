@@ -4,6 +4,7 @@ import React from 'react';
 import theme from '../../theme';
 import RenderList from '../../components/RenderList';
 import { iconBases, icons } from '../../assets/sparkle_icons/index';
+import Form from '../../components/Form';
 
 const SparkleIcons = ({ containerStyle }) => {
   containerStyle = {
@@ -140,6 +141,25 @@ const SparkleIcons = ({ containerStyle }) => {
       );
     });
 
+  const OrderFormFields = [
+    'Name/Alias',
+    'Character Ref(s)',
+    'Eyes',
+    'Eyebrows',
+    'Mouth',
+    'Blush',
+    'Hands',
+    'Extra',
+    'Filter',
+    'BG'
+  ];
+
+  const fieldSetStyle = {
+    border: `5px solid ${theme.general.color}`,
+    display: 'flex',
+    flexDirection: 'column'
+  };
+
   return (
     <div css={containerStyle}>
       {/* gallery */}
@@ -176,7 +196,17 @@ const SparkleIcons = ({ containerStyle }) => {
         <br />
         {`The rest you can leave blank if you don't want anything for them`}
       </p>
-      <h3 css={headingStyle}>✧ Sparkle Icon Order Form ✧</h3>
+      {/* form field */}
+      <fieldset css={fieldSetStyle}>
+        <legend css={{ ...subheadingStyle, marginLeft: '35%' }}>
+          Sparkle Icon Order Form
+        </legend>
+        <Form
+          inputList={OrderFormFields}
+          onSubmit={fields => console.log(fields)}
+          containerStyle={{ pointerEvents: 'auto' }}
+        />
+      </fieldset>
     </div>
   );
 };
