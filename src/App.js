@@ -42,7 +42,7 @@ function App() {
     gridTemplateAreas: ` 
     '. . .'
     '. header .'
-    '. body .' 
+    '. body .'
     '. footer .'
     '. . .'
     `,
@@ -52,7 +52,10 @@ function App() {
     a: {
       pointerEvents: 'auto',
       textDecoration: 'none'
-    }
+    },
+    h2: { ...theme.heading },
+    h3: { ...theme.subheading },
+    p: { ...theme.text }
   };
 
   const [body, setBody] = React.useState('commissions');

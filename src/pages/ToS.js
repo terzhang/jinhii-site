@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
 import theme from '../theme';
+import RenderList from '../components/RenderList';
 
 const ToS = ({ containerStyle }) => {
   containerStyle = {
-    ...containerStyle,
     marginLeft: theme.general.margin, // to indent texts a bit
     marginRight: theme.general.margin,
     // position children
@@ -15,7 +14,9 @@ const ToS = ({ containerStyle }) => {
     gridTemplateAreas: `
     'title' 'text'
     `,
-    justifyItems: 'center'
+    justifyItems: 'center',
+    pointerEvents: 'auto',
+    ...containerStyle
   };
 
   const paragraphStyle = {
@@ -39,7 +40,7 @@ const ToS = ({ containerStyle }) => {
     `✧ I CAN rush commissions if needed for a rush fee, and my rush fees are
         10-30% of the commission price depending on how much of a rush is
         needed.`,
-    `✧ I will do my best to accomodate any requests/needs you have so feel
+    `✧ I will do my best to accommodate any requests/needs you have so feel
         free to ask if you have any concerns~`,
     `✧ I require clear visual references for characters you want drawn, I can
         work with words as well but there must be at least one good reference in
@@ -57,30 +58,19 @@ const ToS = ({ containerStyle }) => {
         permission unless you are the one who commissioned the piece!`
   ];
 
-  const termStyle = {
-    // to make a hanging indent
-    marginLeft: '-1rem', // de-indent first line of text block
-    textIndent: '1rem' // indent the whole text block, canceling first line's de-indent but indenting subsequent lines
-  };
-
   return (
     <div css={containerStyle}>
-      <h2 css={{ gridArea: 'title' }}>
+      <h2 css={{ gridArea: 'title', ...theme.heading, textAlign: 'center' }}>
         {'✧ t e r m s - o f - s e r v i c e ✧'}
       </h2>
       <p css={paragraphStyle}>
-        <strong>
+        <strong
+          css={{ display: 'grid', textAlign: 'center', fontWeight: 'bold' }}
+        >
           {`By commissioning me, you are agreeing to my terms of service, 
-            so please read it thoroughly before commissioning!`}
+          so please read it thoroughly before commissioning!`}
         </strong>
-        <br />
-        {terms.map(term => (
-          <React.Fragment key={term}>
-            <br />
-            <span css={termStyle}>{term}</span>
-            <br />
-          </React.Fragment>
-        ))}
+        <RenderList listArray={terms} />
       </p>
     </div>
   );

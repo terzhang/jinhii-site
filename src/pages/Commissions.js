@@ -1,9 +1,33 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import theme from '../theme';
 import { cssUnitToNumber, urlFriendlyFormat } from '../helper/methods';
-import typesObj from './types/typesObj';
+import * as Types from './types/index';
+
+const typesObj = {
+  sparkleIcons: {
+    label: 'sparkle icons',
+    render: <Types.SparkleIcons />
+  },
+  chibis: { label: 'chibis', render: <Types.Chibis /> },
+  normal: { label: 'normal', render: <Types.Normal /> },
+  pixels: { label: 'pixels', render: <Types.Pixels /> },
+  emotesBadges: {
+    label: 'emotes/badges',
+    render: <Types.EmotesBadges />
+  },
+  kofiEmotes: {
+    label: 'ko-fi emotes',
+    render: <Types.KofiEmotes />
+  },
+  customUgc: { label: 'custom ugc', render: <Types.CustomUgc /> },
+  customWallpaper: {
+    label: 'custom wallpaper',
+    render: <Types.CustomWallpaper />
+  },
+  logos: { label: 'logos', render: <Types.Logos /> }
+};
 
 const Commissions = ({ containerStyle }) => {
   const [commissionType, setCommissionType] = useState('default');
@@ -14,17 +38,8 @@ const Commissions = ({ containerStyle }) => {
     flexDirection: 'column',
     marginLeft: theme.general.margin, // to indent texts a bit
     marginRight: theme.general.margin,
+    height: '100%',
     ...containerStyle
-  };
-
-  const subheadingStyle = {
-    ...theme.subheading,
-    textAlign: 'center'
-  };
-
-  const paragraphStyle = {
-    ...theme.text,
-    textAlign: 'start'
   };
 
   const typesButtonContainerStyle = {
@@ -70,7 +85,7 @@ const Commissions = ({ containerStyle }) => {
     }
     return (
       <>
-        <h2 css={subheadingStyle}>✧ t y p e s ✧</h2>
+        <h2>✧ t y p e s ✧</h2>
         <ul css={typesButtonContainerStyle}>{buttonArray}</ul>
       </>
     );
@@ -78,7 +93,6 @@ const Commissions = ({ containerStyle }) => {
 
   // render a commission type depending on state: commissionType
   const renderCommissionType = () => {
-    console.log('type', commissionType);
     if (commissionType === 'default') {
       return renderTypeButtons();
     } else if (typesObj.hasOwnProperty(commissionType)) {
@@ -90,8 +104,8 @@ const Commissions = ({ containerStyle }) => {
 
   return (
     <div css={containerStyle}>
-      <h2 css={subheadingStyle}>✧ c o m m i s s i o n s ✧</h2>
-      <p css={[paragraphStyle, { textAlign: 'center' }]}>
+      <h2 css={{ textAlign: 'center' }}>✧ c o m m i s s i o n s ✧</h2>
+      <p css={{ textAlign: 'center' }}>
         <strong>
           {`If you haven't yet, please read my `}
           <a href='#tos'>Terms of Service</a>
@@ -99,8 +113,8 @@ const Commissions = ({ containerStyle }) => {
         </strong>
       </p>
       <br />
-      <h2 css={subheadingStyle}>✧ d o ' s - a n d - d o n ' t s ✧</h2>
-      <p css={paragraphStyle}>
+      <h2 css={{ textAlign: 'center' }}>✧ d o ' s - a n d - d o n ' t s ✧</h2>
+      <p css={{ textAlign: 'start' }}>
         <span role='img' aria-label='check-mark'>
           ✔️
         </span>
@@ -117,9 +131,9 @@ const Commissions = ({ containerStyle }) => {
         <br />
         <br />
         <em>
-          Some things may be discussed and negotiated for the right price.
+          {`Some things may be discussed and negotiated for the right price.
           Please ask me if you are unsure or have anything in mind that isn't
-          listed!
+          listed!`}
         </em>
       </p>
       {renderCommissionType(commissionType)}

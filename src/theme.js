@@ -26,19 +26,25 @@ const theme = {
   },
   background: { uri: require('./assets/bg.png') }, // needs require(uri)
   icon: {
-    /* width: '100%',
-    height: '100%', */
     viewBox: '0 0 40 40',
     color: '#73509E'
   },
   footer_hover: {
     fill: '#E199B5'
   },
-  subheading: {
+  heading: {
     fontColor: function() {
       return this.general.color;
     },
     fontSize: '2rem',
+    fontWeight: '600',
+    textAlign: 'center'
+  },
+  subheading: {
+    fontColor: function() {
+      return this.general.color;
+    },
+    fontSize: '1.5rem',
     fontWeight: '600',
     textAlign: 'center'
   },
