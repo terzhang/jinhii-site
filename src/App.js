@@ -1,15 +1,17 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
+import { Router } from '@reach/router';
 import Header from './components/Header';
 import theme, { socialMediaIcons } from './theme';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Commissions from './pages/Commissions';
-import ToS from './pages/ToS';
-import Contact from './pages/Contact';
+// lazy dynamic importing for suspense
+const Home = React.lazy(() => import('./pages/Home'));
+const About = React.lazy(() => import('./pages/About'));
+const Commissions = React.lazy(() => import('./pages/Commissions'));
+const ToS = React.lazy(() => import('./pages/ToS'));
+const Contact = React.lazy(() => import('./pages/Contact'));
 
 function App() {
   const scrollContainer = {
@@ -39,7 +41,7 @@ function App() {
     display: 'grid',
     gridTemplateColumns: `${theme.content.padding} auto  ${theme.content.padding}`,
     gridTemplateRows: `${theme.content.padding} auto auto auto ${theme.content.padding}`,
-    gridTemplateAreas: ` 
+    gridTemplateAreas: `
     '. . .'
     '. header .'
     '. body .'
@@ -60,7 +62,7 @@ function App() {
 
   const [body, setBody] = React.useState('commissions');
 
-  // conditionally render the body section
+  /* // conditionally render the body section
   const renderBody = body => {
     switch (body) {
       case 'home':
@@ -76,7 +78,9 @@ function App() {
       default:
         return <Home containerStyle={{ gridArea: 'body' }} />;
     }
-  };
+  }; */
+
+  const Loader = () => <div>Loading Nyao...</div>;
 
   const handleNavClick = label => {
     setBody(label);
@@ -85,11 +89,17 @@ function App() {
   return (
     <div css={scrollContainer}>
       <div css={contentContainer}>
-        <Header
-          containerStyle={{ gridArea: 'header' }}
-          onClick={handleNavClick} // props drilling setBody -> Header -> HeaderButton
-        />
-        {renderBody(body)}
+        <Header containerStyle={{ gridArea: 'header' }} />
+        {/* {renderBody(body)} */}
+        <Suspense fallback={<Loader />}>
+          <Router css={{ gridArea: 'body' }}>
+            <Home path='/' default />
+            <About path='about' />
+            <Commissions path='commissions' />
+            <ToS path='tos' />
+            <Contact path='contact' />
+          </Router>
+        </Suspense>
         <Footer
           containerStyle={{ gridArea: 'footer' }}
           icons={socialMediaIcons}

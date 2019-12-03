@@ -103,6 +103,7 @@ code {
     monospace;
 }
 
+ol,
 ul,
 li {
   list-style-type: none;
