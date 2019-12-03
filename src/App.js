@@ -30,13 +30,14 @@ function App() {
   const contentContainer = {
     // positioning self
     position: 'absolute',
-    zIndex: '2',
+    zIndex: '2', // pos above background
     gridColumn: 'content',
     backgroundColor: theme.content.backgroundColor,
-    height: 'fit-content', // content heights are dynamic so make this container fit to content
     width: '100%',
+    height: 'fit-content', // fit to content's demand height if content overflows the page
+    minHeight: '100vh', // always at least fill the viewport
     overflowY: 'visible',
-    pointerEvents: 'none', // off by default
+    pointerEvents: 'none', // not pointer events by default
     // grid for positioning contents
     display: 'grid',
     gridTemplateColumns: `${theme.content.padding} auto  ${theme.content.padding}`,
@@ -60,31 +61,7 @@ function App() {
     p: { ...theme.text }
   };
 
-  const [body, setBody] = React.useState('commissions');
-
-  /* // conditionally render the body section
-  const renderBody = body => {
-    switch (body) {
-      case 'home':
-        return <Home containerStyle={{ gridArea: 'body' }} />;
-      case 'about':
-        return <About containerStyle={{ gridArea: 'body' }} />;
-      case 'commissions':
-        return <Commissions containerStyle={{ gridArea: 'body' }} />;
-      case 'tos':
-        return <ToS containerStyle={{ gridArea: 'body' }} />;
-      case 'contact':
-        return <Contact containerStyle={{ gridArea: 'body' }} />;
-      default:
-        return <Home containerStyle={{ gridArea: 'body' }} />;
-    }
-  }; */
-
-  const Loader = () => <div>Loading Nyao...</div>;
-
-  const handleNavClick = label => {
-    setBody(label);
-  };
+  const Loader = () => <div>Loading Meow...</div>;
 
   return (
     <div css={scrollContainer}>
