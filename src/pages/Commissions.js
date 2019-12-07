@@ -1,33 +1,44 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Link } from '@reach/router';
-import React, { useState } from 'react';
+import React, { useState, lazy } from 'react';
 import theme from '../theme';
 import { cssUnitToNumber, urlFriendlyFormat } from '../helper/methods';
-import * as Types from './types/index';
+/* import * as Types from './types/index'; */
+
+const typesPath = './types/';
+const SparkleIcons = lazy(() => import(typesPath + 'SparkleIcons'));
+const Chibis = lazy(() => import(typesPath + 'Chibis'));
+const Normal = lazy(() => import(typesPath + 'Normal'));
+const Pixels = lazy(() => import(typesPath + 'Chibis'));
+const EmotesBadges = lazy(() => import(typesPath + 'Chibis'));
+const KofiEmotes = lazy(() => import(typesPath + 'Chibis'));
+const CustomUgc = lazy(() => import(typesPath + 'Chibis'));
+const CustomWallpaper = lazy(() => import(typesPath + 'Chibis'));
+const Logos = lazy(() => import(typesPath + 'Chibis'));
 
 const typesObj = {
   sparkleIcons: {
     label: 'sparkle icons',
-    render: <Types.SparkleIcons />
+    render: <SparkleIcons />
   },
-  chibis: { label: 'chibis', render: <Types.Chibis /> },
-  normal: { label: 'normal', render: <Types.Normal /> },
-  pixels: { label: 'pixels', render: <Types.Pixels /> },
+  chibis: { label: 'chibis', render: <Chibis /> },
+  normal: { label: 'normal', render: <Normal /> },
+  pixels: { label: 'pixels', render: <Pixels /> },
   emotesBadges: {
     label: 'emotes/badges',
-    render: <Types.EmotesBadges />
+    render: <EmotesBadges />
   },
   kofiEmotes: {
     label: 'ko-fi emotes',
-    render: <Types.KofiEmotes />
+    render: <KofiEmotes />
   },
-  customUgc: { label: 'custom ugc', render: <Types.CustomUgc /> },
+  customUgc: { label: 'custom ugc', render: <CustomUgc /> },
   customWallpaper: {
     label: 'custom wallpaper',
-    render: <Types.CustomWallpaper />
+    render: <CustomWallpaper />
   },
-  logos: { label: 'logos', render: <Types.Logos /> }
+  logos: { label: 'logos', render: <Logos /> }
 };
 
 const Commissions = ({ containerStyle }) => {

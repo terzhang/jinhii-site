@@ -12,9 +12,6 @@ const About = lazy(() => import('./pages/About'));
 const Commissions = lazy(() => import('./pages/Commissions'));
 const ToS = lazy(() => import('./pages/ToS'));
 const Contact = lazy(() => import('./pages/Contact'));
-// commission types
-const Chibis = lazy(() => import('./pages/types/Chibis'));
-const SparkleIcons = lazy(() => import('./pages/types/SparkleIcons'));
 
 function App() {
   const scrollContainer = {
@@ -44,7 +41,7 @@ function App() {
     // grid for positioning grid contents
     display: 'grid',
     gridTemplateColumns: `${theme.content.padding} auto  ${theme.content.padding}`,
-    gridTemplateRows: `${theme.content.padding} auto auto auto ${theme.content.padding}`,
+    gridTemplateRows: `${theme.content.padding} auto max-content auto ${theme.content.padding}`,
     gridTemplateAreas: `
     '. . .'
     '. header .'
@@ -78,7 +75,19 @@ function App() {
     alignContent: 'center'
   };
 
-  const Loader = () => <div>Loading Meow...</div>;
+  const Loader = () => (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%'
+      }}
+    >
+      Loading Meow...
+    </div>
+  );
 
   return (
     <div css={scrollContainer}>
@@ -92,10 +101,7 @@ function App() {
           <Router css={bodyStyle}>
             <Home path='/' default />
             <About path='about' />
-            <Commissions path='commissions'>
-              <SparkleIcons path='#spark_icons' />
-              <Chibis path='#chibis' />
-            </Commissions>
+            <Commissions path='commissions'></Commissions>
             <ToS path='tos' />
             <Contact path='contact' />
           </Router>
