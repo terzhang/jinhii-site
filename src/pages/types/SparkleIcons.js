@@ -19,8 +19,6 @@ const SparkleIcons = ({ containerStyle }) => {
   const galleryContainerStyle = {
     // style self
     display: 'grid',
-    width: '1fr',
-    height: '1fr',
     maxHeight: '100%',
     // style self
     gridTemplateColumns: `repeat(5, minmax(0, 1fr))`,
@@ -107,10 +105,12 @@ const SparkleIcons = ({ containerStyle }) => {
     { label: '✧ f i l t e r s ✧', alt: '' }
   ];
 
-  const renderGalleryIcons = () =>
-    icons.keys().map((fileName, index) => {
-      let src = require('../../assets/sparkle_icons/icons/' +
-        fileName.slice(2));
+  // render grids of sparkle icon examples from a list of icon uris inside an obj
+  const renderGalleryIcons = icons =>
+    icons.keys().map(fileName => {
+      /* let src = require('../../assets/sparkle_icons/icons/' +
+        fileName.slice(2)); */
+      let src = icons(fileName);
       return (
         <a href={src} key={fileName}>
           <img src={src} alt='' css={galleryIconStyle} />
@@ -130,9 +130,10 @@ const SparkleIcons = ({ containerStyle }) => {
     height: 'auto'
   };
 
-  const renderBaseOptions = () =>
+  const renderBaseOptions = iconBases =>
     iconBases.keys().map((fileName, index) => {
-      let src = require('../../assets/sparkle_icons/' + fileName.slice(2));
+      /* let src = require('../../assets/sparkle_icons/' + fileName.slice(2)); */
+      let src = iconBases(fileName);
       return (
         <div css={baseSectionStyle} key={fileName}>
           <h3 css={subheadingStyle}>{baseOptions[index].label}</h3>
@@ -164,7 +165,7 @@ const SparkleIcons = ({ containerStyle }) => {
     <div css={containerStyle}>
       {/* gallery */}
       <h2 css={headingStyle}>✧ s p a r k l e - i c o n s ✧</h2>
-      <div css={galleryContainerStyle}>{renderGalleryIcons()}</div>
+      <div css={galleryContainerStyle}>{renderGalleryIcons(icons)}</div>
       {/* options */}
       <div css={optionSectionStyle}>
         <RenderList
@@ -187,7 +188,7 @@ const SparkleIcons = ({ containerStyle }) => {
       </div>
       {/* base options */}
       <h2 css={headingStyle}>✧ b a s e - o p t i o n s ✧</h2>
-      {renderBaseOptions()}
+      {renderBaseOptions(iconBases)}
       {/* Order Form */}
       <h2 css={headingStyle}>✧ o r d e r - f o r m ✧</h2>
       <p css={{ display: 'grid', textAlign: 'center', width: '100%' }}>

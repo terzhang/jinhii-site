@@ -26,11 +26,9 @@ const Contact = ({ containerStyle }) => {
   );
 
   containerStyle = {
-    ...containerStyle,
     // position children
     display: 'grid',
-    gridTemplateColumns: 'auto',
-    gridTemplateRows: 'minmax(0, auto) minmax(0, auto) minmax(0, auto)',
+    gridTemplateRows: 'repeat(3, minmax(auto, max-content))',
     gridTemplateAreas: `
     'title' 'icons' 'text'
     `,
@@ -38,7 +36,7 @@ const Contact = ({ containerStyle }) => {
     button: {
       pointerEvents: 'auto'
     },
-    p: { margin: '0' } // cancel p tag's default margins
+    ...containerStyle
   };
 
   const buttonStyle = { height: '2rem', marginLeft: '1rem' };
@@ -47,7 +45,9 @@ const Contact = ({ containerStyle }) => {
 
   return (
     <div css={containerStyle}>
+      {/* subheading */}
       <h2 css={{ gridArea: 'title' }}>✧ c o n t a c t ✧</h2>
+      {/* mini footer */}
       {miniFooter({
         gridArea: 'icons',
         // size is mainly by width
@@ -55,6 +55,7 @@ const Contact = ({ containerStyle }) => {
         height: '100%',
         pointerEvents: 'auto'
       })}
+      {/* best contact method */}
       <div css={{ display: 'flex', flexDirection: 'row' }}>
         <p css={{ gridArea: 'text' }}>
           Discord (best method): <span ref={textAreaRef}>Jinhii#2087</span>

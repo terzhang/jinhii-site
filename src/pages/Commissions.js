@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { Link } from '@reach/router';
 import React, { useState } from 'react';
 import theme from '../theme';
 import { cssUnitToNumber, urlFriendlyFormat } from '../helper/methods';
@@ -108,7 +109,10 @@ const Commissions = ({ containerStyle }) => {
       <p css={{ textAlign: 'center' }}>
         <strong>
           {`If you haven't yet, please read my `}
-          <a href='#tos'>Terms of Service</a>
+          {/* remember the slash or else it's relative navigation */}
+          <Link to='/tos' css={{ fontWeight: 'bolder' }}>
+            Terms of Service
+          </Link>
           {` before requesting a commission!`}
         </strong>
       </p>
