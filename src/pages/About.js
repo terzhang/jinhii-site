@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import theme from '../theme';
+import LabelledList from '../components/LabelledList';
 
 const About = ({ containerStyle }) => {
   containerStyle = {
@@ -8,8 +9,7 @@ const About = ({ containerStyle }) => {
     marginRight: theme.general.margin,
     // position children
     display: 'grid',
-    gridTemplateColumns: 'auto auto auto',
-    gridTemplateRows: 'auto',
+    gridTemplateRows: 'auto auto auto',
     gridTemplateAreas: `
     'title' 'image' 'text'
     `,
@@ -21,8 +21,47 @@ const About = ({ containerStyle }) => {
     gridArea: 'text',
     textAlign: 'start',
     fontSize: theme.text.fontSize,
-    fontWeight: theme.text.fontWeight
+    fontWeight: theme.text.fontWeight,
+    // allow interaction
+    pointerEvents: 'auto'
   };
+
+  const nestedArray = [
+    { label: 'Name/Alias', detail: 'Jinhii (basically my korean name 진희)' },
+    { label: 'Nicknames', detail: 'Jin, Jinjin, Jinny/Jinnie, etc' },
+    {
+      label: 'Occupation',
+      detail: 'Freelance Digital Artist/Graphic Designer'
+    },
+    { label: 'Country', detail: 'United States' },
+    { label: 'Ethnicity', detail: 'Korean' },
+    {
+      label: 'Likes',
+      detail: `Drawing, Singing, Cats, Anime, Cute things/animals/people,
+      Food, Boba, Sleep, 2D characters, Music (mostly weeb music lol), MS2`
+    },
+    {
+      label: 'Tools',
+      detail: [
+        {
+          label: 'Art',
+          detail: [
+            'Wacom Intuos 5 Tablet (small)',
+            'Paint Tool SAI (main)',
+            'Clip Studio Paint (occasionally)'
+          ]
+        },
+        {
+          label: 'Covers',
+          detail: [
+            'Rode NT USB Mic',
+            'Mixcraft 7',
+            'FL Studio (for newtone plugin)'
+          ]
+        }
+      ]
+    }
+  ];
 
   return (
     <div css={containerStyle}>
@@ -32,25 +71,7 @@ const About = ({ containerStyle }) => {
         src={require('../assets/Smol_Cheeb_Witch_Celeste.png')}
         alt="Jinhii's Smol Witch - Celeste"
       />
-      <p css={paragraphStyle}>
-        <strong>Name/Alias ✧</strong> Jinhii (basically my korean name 진희)
-        <br />
-        <strong>Nicknames ✧</strong> Jin, Jinjin, Jinny/Jinnie, etc
-        <br />
-        <strong>Occupation ✧</strong> Freelance Digital Artist/Graphic Designer
-        <br />
-        <strong>Country ✧</strong> United States
-        <br />
-        <strong>Ethnicity ✧</strong> Korean
-        <br />
-        <strong>Likes ✧</strong> Drawing, Singing, Cats, Anime, Cute
-        things/animals/people, Food, Boba, Sleep, 2D characters, Music (mostly
-        weeb music lol), MS2
-        <br />
-        <strong>Tools ✧</strong> Art: Wacom Intuos 5 Tablet (small), Paint Tool
-        SAI (main), Clip Studio Paint (occasionally) | Covers: Rode NT USB Mic,
-        Mixcraft 7, FL Studio (for newtone plugin)
-      </p>
+      <LabelledList listArray={nestedArray} containerStyle={paragraphStyle} />
     </div>
   );
 };
