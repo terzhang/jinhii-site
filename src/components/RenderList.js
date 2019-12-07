@@ -11,6 +11,12 @@ const RenderList = ({
   containerStyle,
   textStyle
 }) => {
+  containerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    ...containerStyle
+  };
+
   textStyle = {
     // to make a hanging indent
     marginLeft: '1rem', // de-indent first line of text block
@@ -35,7 +41,7 @@ const RenderList = ({
 
   return (
     <div css={containerStyle}>
-      <h3 css={labelStyle}>{label}</h3>
+      {label && <h3 css={labelStyle}>{label}</h3>}
       {list}
     </div>
   );

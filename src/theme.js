@@ -45,7 +45,7 @@ const theme = {
       return this.general.color;
     },
     fontSize: '1.5rem',
-    fontWeight: '600',
+    fontWeight: '500',
     textAlign: 'center'
   },
   text: {
@@ -53,7 +53,8 @@ const theme = {
       return this.general.color;
     },
     fontSize: '1rem',
-    fontWeight: '400'
+    fontWeight: '400',
+    lineHeight: '1.5'
   },
   input: { fontSize: '1rem', fontWeight: '200', borderRadius: '0 1rem 1rem 0' }
 };

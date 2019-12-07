@@ -14,7 +14,6 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
     position: 'relative',
     width: '100%',
     height: 'fit-content',
-    /* maxHeight: '100%', */
     // inner grid
     display: 'grid',
     gridTemplateRows: `repeat(${inputList.length}, minmax(0, 1fr))`,
@@ -23,6 +22,7 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
     // estimated along with bar style's padding
     gridRowGap: '2%',
     gridColumnGap: '1%',
+    pointerEvents: 'auto',
     p: {
       textAlign: 'end',
       gridColumn: '1/2'
@@ -66,11 +66,21 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
   // render a list of inputs given an input list
   const renderInputs = list => {
     const array = list.map((key, index) => {
-      // input value, value change func, input label
-      const inputValue = fields.key ? fields.key : '';
+      let inputValue, inputLabel, placeHolder;
+      if (typeof key === 'string') {
+        // input value, value change func, input label
+        inputValue = fields[key];
+        inputLabel = key;
+        placeHolder = key;
+      } else {
+        inputValue = fields[key.label];
+        inputLabel = key.label;
+        placeHolder = key.placeholder;
+      }
+
       const onChange = event =>
         setFields({ ...fields, [key]: event.target.value });
-      const inputLabel = key.label ? key.label : key;
+
       // generate inputs & bars via an array
       return (
         <React.Fragment key={inputLabel}>
@@ -81,7 +91,7 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
               value={inputValue}
               onChange={onChange}
               css={inputStyle}
-              placeholder={inputLabel}
+              placeholder={placeHolder}
             />
           </div>
         </React.Fragment>
