@@ -1,17 +1,20 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React, { Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import './App.css';
-import { Router } from '@reach/router';
-import Header from './components/Header';
 import theme, { socialMediaIcons } from './theme';
-import Footer from './components/Footer';
+import { Router } from '@reach/router';
+const Header = lazy(() => import('./components/Header'));
+const Footer = lazy(() => import('./components/Footer'));
 // lazy dynamic importing for suspense
-const Home = React.lazy(() => import('./pages/Home'));
-const About = React.lazy(() => import('./pages/About'));
-const Commissions = React.lazy(() => import('./pages/Commissions'));
-const ToS = React.lazy(() => import('./pages/ToS'));
-const Contact = React.lazy(() => import('./pages/Contact'));
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Commissions = lazy(() => import('./pages/Commissions'));
+const ToS = lazy(() => import('./pages/ToS'));
+const Contact = lazy(() => import('./pages/Contact'));
+// commission types
+const Chibis = lazy(() => import('./pages/types/Chibis'));
+const SparkleIcons = lazy(() => import('./pages/types/SparkleIcons'));
 
 function App() {
   const scrollContainer = {
@@ -38,7 +41,7 @@ function App() {
     minHeight: '100vh', // always at least fill the viewport
     overflowY: 'visible',
     pointerEvents: 'none', // not pointer events by default
-    // grid for positioning contents
+    // grid for positioning grid contents
     display: 'grid',
     gridTemplateColumns: `${theme.content.padding} auto  ${theme.content.padding}`,
     gridTemplateRows: `${theme.content.padding} auto auto auto ${theme.content.padding}`,
@@ -58,7 +61,21 @@ function App() {
     },
     h2: { ...theme.heading },
     h3: { ...theme.subheading },
+    h4: {
+      ...theme.subheading,
+      fontWeight: '400',
+      fontSize: '1.25rem',
+      textAlign: 'start'
+    },
     p: { ...theme.text }
+  };
+
+  const bodyStyle = {
+    gridArea: 'body',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 'fit-content',
+    alignContent: 'center'
   };
 
   const Loader = () => <div>Loading Meow...</div>;
@@ -66,21 +83,30 @@ function App() {
   return (
     <div css={scrollContainer}>
       <div css={contentContainer}>
-        <Header containerStyle={{ gridArea: 'header' }} />
-        {/* {renderBody(body)} */}
+        {/* Header */}
         <Suspense fallback={<Loader />}>
-          <Router css={{ gridArea: 'body' }}>
+          <Header containerStyle={{ gridArea: 'header' }} />
+        </Suspense>
+        {/* body*/}
+        <Suspense fallback={<Loader />}>
+          <Router css={bodyStyle}>
             <Home path='/' default />
             <About path='about' />
-            <Commissions path='commissions' />
+            <Commissions path='commissions'>
+              <SparkleIcons path='#spark_icons' />
+              <Chibis path='#chibis' />
+            </Commissions>
             <ToS path='tos' />
             <Contact path='contact' />
           </Router>
         </Suspense>
-        <Footer
-          containerStyle={{ gridArea: 'footer' }}
-          icons={socialMediaIcons}
-        />
+        {/* Footer*/}
+        <Suspense fallback={<Loader />}>
+          <Footer
+            containerStyle={{ gridArea: 'footer' }}
+            icons={socialMediaIcons}
+          />
+        </Suspense>
       </div>
     </div>
   );
