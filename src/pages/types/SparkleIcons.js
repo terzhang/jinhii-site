@@ -21,11 +21,15 @@ const SparkleIcons = ({ containerStyle }) => {
     display: 'grid',
     maxHeight: '100%',
     // style self
-    gridTemplateColumns: `repeat(5, minmax(0, 1fr))`,
-    gridTemplateRows: 'repeat(auto-fit, minmax(0, 1fr))',
-    // for implicitly generated grids items
+    /* gridTemplateColumns: `repeat(5, minmax(0, 1fr))`, */
+    gridTemplateColumns: `repeat(auto-fit, minmax(160px, 1fr))`,
+    /* gridTemplateRows: 'repeat(auto-fit, minmax(0, 1fr))', */
+    gridTemplateRows: `repeat(auto-fit, minmax(160px, 1fr))`,
+    // for implicitly generate new rows if overflow
     gridAutoFlow: 'row',
-    gridGap: '2%'
+    gridAutoRows: 'minmax(0, 1fr)', // assign implicit rows' dimensions
+    // space each anchor tag / img tag with a margin
+    a: { margin: '10px' }
   };
 
   const galleryIconStyle = {
