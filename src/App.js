@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { Global, jsx } from '@emotion/core';
 import React, { lazy, Suspense } from 'react';
 import './App.css';
 import theme, { socialMediaIcons } from './theme';
@@ -49,9 +49,10 @@ function App() {
     '. footer .'
     '. . .'
     `,
-    // styling childrens
-    color: theme.general.color, // set default color for children
-    // defaults for children
+    color: theme.general.color // set default color for children
+  };
+
+  const globalStyle = {
     a: {
       pointerEvents: 'auto',
       textDecoration: 'none'
@@ -91,6 +92,7 @@ function App() {
 
   return (
     <div css={scrollContainer}>
+      <Global styles={globalStyle} />
       <div css={contentContainer}>
         {/* Header */}
         <Suspense fallback={<Loader />}>

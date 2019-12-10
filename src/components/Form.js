@@ -18,40 +18,32 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
     display: 'grid',
     gridTemplateRows: `repeat(${inputList.length}, minmax(0, 1fr))`,
     gridTemplateColumns:
-      '[outer-start] 1fr [button-start] 1fr [button-end] 1fr [outer-end]',
+      '[outer-start] 1fr [button-start] 1fr [button-end] 1fr [outer-end]', // cause overflowing
     // estimated along with bar style's padding
-    gridRowGap: '2%',
-    gridColumnGap: '1%',
+    /* gridRowGap: '2%', */ gridColumnGap: '1%',
     pointerEvents: 'auto',
     p: {
       textAlign: 'end',
+      justifySelf: 'end',
+      alignSelf: 'center',
       gridColumn: '1/2'
     },
     ...containerStyle
   };
 
-  // each input bar
-  const barStyle = {
-    // style self
-    gridColumn: '2 / 3',
-    margin: '5%',
-    // style content
-    display: 'inline-grid',
-    gridTemplateColumns: '[input-start] 1fr [input-end]',
-    height: '100%',
-    width: '100%',
-    boxSizing: 'border-box',
-    border: `2px solid ${theme.general.color}`,
-    ...theme.input
-  };
-
   // the inputs
   const inputStyle = {
-    gridColumn: 'input',
-    width: '100%',
-    height: '100%',
+    gridColumn: '2 / 3',
+    /* gridColumn: 'input', */
+    /* width: '100%',
+    height: '100%', */
+    maxHeight: 'max-content',
+    // space outside border
+    margin: '5%',
+    // space inside border and around contents
+    padding: '10px',
     background: 'transparent',
-    border: 'none'
+    border: `2px solid ${theme.general.color}`
   };
 
   // the submit button
@@ -85,15 +77,13 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
       return (
         <React.Fragment key={inputLabel}>
           <p>{inputLabel}</p>
-          <div css={{ ...barStyle }}>
-            <input
-              type='text'
-              value={inputValue}
-              onChange={onChange}
-              css={inputStyle}
-              placeholder={placeHolder}
-            />
-          </div>
+          <input
+            type='text'
+            value={inputValue}
+            onChange={onChange}
+            css={inputStyle}
+            placeholder={placeHolder}
+          />
         </React.Fragment>
       );
     });

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, css } from '@emotion/core';
 import React from 'react';
 
 const LabelledList = ({
@@ -108,7 +108,7 @@ const LabelledList = ({
         <LabelledList
           listArray={detail}
           mainLabel={false}
-          // nested labelledlist's container is a child of this listContainer
+          // nested labelledList's container is a child of this listContainer
           containerStyle={detailContainerStyle}
           // inner listContainer needs to have the list skinnier
           listContainerStyle={detailListContainerStyle}

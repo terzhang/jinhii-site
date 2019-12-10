@@ -4,8 +4,7 @@ import { Link } from '@reach/router';
 import React, { useState, lazy } from 'react';
 import theme from '../theme';
 import { cssUnitToNumber, urlFriendlyFormat } from '../helper/methods';
-/* import * as Types from './types/index'; */
-
+// lazy import commission types
 const typesPath = './types/';
 const SparkleIcons = lazy(() => import(typesPath + 'SparkleIcons'));
 const Chibis = lazy(() => import(typesPath + 'Chibis'));

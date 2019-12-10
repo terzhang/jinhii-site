@@ -7,7 +7,6 @@ import { Link } from '@reach/router';
 /* const HeaderButton = ({ onClick, label, nav }) => { */
 const HeaderButton = props => {
   const { label, nav } = props;
-  console.log('props for header buttons:', props);
   const containerStyle = {
     // self pos
     gridColumn: 'span 1 / span 1',
