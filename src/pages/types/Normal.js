@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
 import LabelledList from '../../components/LabelledList';
 import normals from '../../assets/normal/index';
 import Fieldset from '../../components/Fieldset';
@@ -55,7 +54,8 @@ const Normal = () => {
       </h2>
       <ImageGridGallery
         requireContext={normals}
-        imageSize={{ width: '10vh', height: '10vh' }}
+        // gridSize={{ width: '10vh', height: '10vh' }}
+        imageStyle={{ height: '10rem', width: '10rem', objectFit: 'cover' }}
       />
       {/* normal options */}
       <h3 css={{ textAlign: 'center', justifySelf: 'center' }}>

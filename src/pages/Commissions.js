@@ -9,12 +9,12 @@ const typesPath = './types/';
 const SparkleIcons = lazy(() => import(typesPath + 'SparkleIcons'));
 const Chibis = lazy(() => import(typesPath + 'Chibis'));
 const Normal = lazy(() => import(typesPath + 'Normal'));
-const Pixels = lazy(() => import(typesPath + 'Chibis'));
-const EmotesBadges = lazy(() => import(typesPath + 'Chibis'));
-const KofiEmotes = lazy(() => import(typesPath + 'Chibis'));
-const CustomUgc = lazy(() => import(typesPath + 'Chibis'));
-const CustomWallpaper = lazy(() => import(typesPath + 'Chibis'));
-const Logos = lazy(() => import(typesPath + 'Chibis'));
+const Pixels = lazy(() => import(typesPath + 'Pixels'));
+const EmotesBadges = lazy(() => import(typesPath + 'EmotesBadges'));
+const KofiEmotes = lazy(() => import(typesPath + 'KofiEmotes'));
+const CustomUgc = lazy(() => import(typesPath + 'CustomUgc'));
+const CustomWallpaper = lazy(() => import(typesPath + 'CustomWallpaper'));
+const Logos = lazy(() => import(typesPath + 'Logos'));
 
 const typesObj = {
   sparkleIcons: {

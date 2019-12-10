@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import theme from '../../theme';
-import React from 'react';
 import { linedChibis, linelessChibis } from '../../assets/chibis/index';
 import Fieldset from '../../components/Fieldset';
 import RenderList from '../../components/RenderList';
@@ -15,11 +14,6 @@ const Chibis = ({ containerStyle }) => {
     display: 'flex',
     flexDirection: 'column',
     ...containerStyle
-  };
-
-  const linedGallerySectionStyle = {
-    // * centering last child is hacky, it assumes there's 3 columns and last child is alone on a new row
-    '& :last-child': { gridColumn: '2 / 3' }
   };
 
   const handleSubmit = fields => {
@@ -50,8 +44,7 @@ const Chibis = ({ containerStyle }) => {
       <h3 css={{ ...theme.heading, textAlign: 'center' }}>✧ Lined Chibis ✧</h3>
       <ImageGridGallery
         requireContext={linedChibis}
-        wrapperStyle={linedGallerySectionStyle}
-        imageSize={{ width: '30vmin', height: '30vmin' }}
+        imageStyle={{ width: '25vmin', height: 'auto', objectFit: 'contain' }}
       />
       <RenderList listArray={lineChibiDetails} label={null} />
       <h3 css={{ ...theme.heading, textAlign: 'center' }}>
@@ -59,7 +52,7 @@ const Chibis = ({ containerStyle }) => {
       </h3>
       <ImageGridGallery
         requireContext={linelessChibis}
-        imageSize={{ width: '30vmin', height: '30vmin' }}
+        imageStyle={{ width: '25vmin%', height: 'auto%', objectFit: 'contain' }}
       />
       <h3>✧ o r d e r - f o r m ✧</h3>
       <Fieldset

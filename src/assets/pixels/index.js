@@ -1,4 +1,11 @@
 // create a context for the files in directory selected by RegEx
-const pixels = require.context('./', false, /\.(png|jpe?g|svg|gif)$/);
-
-export default pixels;
+export const bigPixels = require.context(
+  './big',
+  false,
+  /\.(png|jpe?g|svg|gif)$/
+);
+export const smallPixels = require.context(
+  './small',
+  false,
+  /\.(png|jpe?g|svg|gif)$/
+);
