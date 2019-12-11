@@ -81,6 +81,10 @@ const CustomWallpaper = () => {
         formFields={wallpaperFields}
         legend={'✧ Custom Wallpaper Order Form ✧'}
       />
+      <p
+        css={{ alignSelf: 'center' }}
+      >{`Contact me through one of the methods on the contacts page
+         if you'd like to commission wallpaper(s)!`}</p>
     </div>
   );
 };
