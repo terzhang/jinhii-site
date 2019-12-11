@@ -70,8 +70,10 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
         placeHolder = key.placeholder;
       }
 
+      // replace the state with a new state that's the old state spread...
+      // with current key's label as the new key and the current input value as value
       const onChange = event =>
-        setFields({ ...fields, [key]: event.target.value });
+        setFields({ ...fields, [key.label]: event.target.value });
 
       // generate inputs & bars via an array
       return (
@@ -80,7 +82,6 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
           <input
             type='text'
             // if initial value is undefined, component becomes uncontrolled
-            // so initialize to '' if value is undefined
             value={inputValue || ''}
             onChange={onChange}
             css={inputStyle}
@@ -92,10 +93,10 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
     return array;
   };
 
-  const handleSubmit = fields => {
+  const handleSubmit = () => {
     // only when user typed something
     // TODO: check if certain fields are filled properly
-    if (fields.keys().length > 0) {
+    if (Object.keys(fields).length > 0) {
       onSubmit(fields);
       // clear the fields
       resetFields();

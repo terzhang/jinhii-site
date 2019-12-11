@@ -8,6 +8,8 @@ import Fieldset from '../../components/Fieldset';
 import ImageGridGallery from '../../components/ImageGridGallery';
 
 const SparkleIcons = ({ containerStyle }) => {
+  const [totalPrice, setTotalPrice] = React.useState(0);
+
   containerStyle = {
     width: '100%',
     height: 'fit-content',
@@ -106,17 +108,26 @@ const SparkleIcons = ({ containerStyle }) => {
     });
 
   const formFields = [
-    'Name/Alias',
-    'Character Ref(s)',
-    'Eyes',
-    'Eyebrows',
-    'Mouth',
-    'Blush',
-    'Hands',
-    'Extra',
-    'Filter',
-    'BG'
+    { label: 'Name/Alias', placeholder: '(#/custom)' },
+    { label: 'Character Ref(s)' },
+    { label: 'Eyes', placeholder: '(#/custom)' },
+    { label: 'Eyebrows', placeholder: '(#/custom)' },
+    { label: 'Mouth', placeholder: '(#/none)' },
+    { label: 'Blush', placeholder: '(#/custom)' },
+    { label: 'Hands', placeholder: '(#/none/custom)' },
+    { label: 'Extra', placeholder: '(#/none/custom)' },
+    { label: 'Filter', placeholder: '(#/none/custom)' },
+    {
+      label: 'BG',
+      placeholder:
+        '(choose 1-2 colors or I will choose what I feel is suitable)'
+    },
+    { label: 'Any additional requests/questions?' }
   ];
+
+  const handleSubmit = fields => {
+    console.log(fields);
+  };
 
   return (
     <div css={containerStyle}>
@@ -162,8 +173,11 @@ const SparkleIcons = ({ containerStyle }) => {
       <Fieldset
         formFields={formFields}
         legend={'✧ Sparkle Icon Order Form ✧'}
-        onSubmit={fields => console.log(fields)}
+        onSubmit={handleSubmit}
       />
+      <p css={{ alignSelf: 'center', fontWeight: 'bold' }}>
+        {`Total Price: ${totalPrice}`}
+      </p>
     </div>
   );
 };
