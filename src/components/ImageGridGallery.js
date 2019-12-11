@@ -8,7 +8,7 @@ const ImageGridGallery = ({
   wrapperStyle,
   imageStyle
 }) => {
-  // using flexbox
+  // using flexBox
   wrapperStyle = {
     display: 'flex',
     flexDirection: 'row',

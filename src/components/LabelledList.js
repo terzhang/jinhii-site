@@ -65,7 +65,7 @@ const LabelledList = ({
     maxHeight: '100%',
     // style content
     display: 'grid',
-    gridTemplateColumns: '1fr 4fr',
+    gridTemplateColumns: '1fr 1fr',
     // needs double quote and each string in the quote tag is a row
     gridTemplateAreas: `'labels details'`,
     gridGap: '2%',

@@ -71,7 +71,11 @@ const About = ({ containerStyle }) => {
         src={require('../assets/Smol_Cheeb_Witch_Celeste.png')}
         alt="Jinhii's Smol Witch - Celeste"
       />
-      <LabelledList listArray={nestedArray} containerStyle={paragraphStyle} />
+      <LabelledList
+        listArray={nestedArray}
+        listStyle={{ gridTemplateColumns: '1fr 4fr' }}
+        containerStyle={paragraphStyle}
+      />
     </div>
   );
 };
