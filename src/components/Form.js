@@ -79,7 +79,9 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
           <p>{inputLabel}</p>
           <input
             type='text'
-            value={inputValue}
+            // if initial value is undefined, component becomes uncontrolled
+            // so initialize to '' if value is undefined
+            value={inputValue || ''}
             onChange={onChange}
             css={inputStyle}
             placeholder={placeHolder}
@@ -90,8 +92,21 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
     return array;
   };
 
+  const handleSubmit = fields => {
+    // only when user typed something
+    // TODO: check if certain fields are filled properly
+    if (fields.keys().length > 0) {
+      onSubmit(fields);
+      // clear the fields
+      resetFields();
+    } else {
+      // TODO: make this red and appearing between fields
+      console.log('Please fill in the fields marked with *');
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit(fields)} css={containerStyle}>
+    <form onSubmit={handleSubmit} css={containerStyle}>
       {renderInputs(inputList)}
       <input type='submit' value='Submit' css={buttonStyle} />
     </form>
