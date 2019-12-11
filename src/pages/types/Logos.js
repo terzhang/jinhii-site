@@ -64,7 +64,9 @@ const Logos = () => {
       </div>
       <h2>✧ o r d e r - f o r m ✧</h2>
       <Fieldset formFields={logoFields} legend={'✧ Logo Order Form ✧'} />
-      <p>{`Contact me through one of the methods on the contacts page
+      <p
+        css={{ alignSelf: 'center' }}
+      >{`Contact me through one of the methods on the contacts page
           if you'd like to commission a logo(s)!`}</p>
     </div>
   );
