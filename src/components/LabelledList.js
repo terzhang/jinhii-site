@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import React from 'react';
 import theme from '../theme';
 
@@ -155,11 +155,11 @@ const LabelledList = ({
   // listArray<Array> = [ list<Object>... ]
   // listObj<Object> = { label<any>: labelString<String>, detail<any>: detailString<String> || listArray<Array> }
   const renderArrayObj = obj => {
-    // obj is a string simply render the text
+    // obj is a string simply render the text and take up the whole column
     if (obj && typeof obj === 'string') {
       return (
         <div css={listStyle} key={obj}>
-          <p>{obj}</p>
+          <p css={{ gridColumn: '1 / -1' }}>{obj}</p>
         </div>
       );
     } else if (typeof obj === 'object') {

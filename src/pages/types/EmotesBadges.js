@@ -25,10 +25,6 @@ const EmotesBadges = () => {
     `
   };
 
-  const optionStyle = {
-    gridTemplateColumns: '1fr 1fr'
-  };
-
   const twitchOptions = [
     { label: '1 emote', detail: '30 USD' },
     { label: '3 emote', detail: '75 USD (25 USD/emote)' },
@@ -90,13 +86,11 @@ const EmotesBadges = () => {
       <div css={optionSectionStyle}>
         <LabelledList
           containerStyle={{ gridArea: 'twitch' }}
-          listStyle={optionStyle}
           listArray={twitchOptions}
           title={'✧ Twitch Emotes ✧'}
         />
         <LabelledList
           containerStyle={{ gridArea: 'discord' }}
-          listStyle={optionStyle}
           listArray={discordOptions}
           title={'✧ Discord Emotes ✧'}
         />
@@ -115,11 +109,7 @@ const EmotesBadges = () => {
       <h2>✧ t w i t c h - s u b/b i t - b a d g e s ✧</h2>
       <ImageGridGallery requireContext={subBadges} />
       {/* sub badges options */}
-      <LabelledList
-        listStyle={optionStyle}
-        listArray={subBadgeOptions}
-        title={'✧ Sub Badges ✧'}
-      />
+      <LabelledList listArray={subBadgeOptions} title={'✧ Sub Badges ✧'} />
       <p
         css={{ justifySelf: 'center' }}
       >{`*Please note that these are extremely tiny,
