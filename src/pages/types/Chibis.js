@@ -52,7 +52,7 @@ const Chibis = ({ containerStyle }) => {
       </h3>
       <ImageGridGallery
         requireContext={linelessChibis}
-        imageStyle={{ width: '25vmin%', height: 'auto%', objectFit: 'contain' }}
+        imageStyle={{ width: '25vmin', height: 'auto%', objectFit: 'contain' }}
       />
       <h3>✧ o r d e r - f o r m ✧</h3>
       <Fieldset
