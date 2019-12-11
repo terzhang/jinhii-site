@@ -64,13 +64,13 @@ const Normal = () => {
       <LabelledList
         containerStyle={{}}
         listArray={optionsList}
-        listContainerStyle={{ gridTemplateColumns: '1fr 1fr' }}
+        listStyle={{ gridTemplateColumns: '1fr 1fr' }}
       />
       <h3>Extras:</h3>
       <LabelledList
         containerStyle={{}}
         listArray={extrasList}
-        listContainerStyle={{ gridTemplateColumns: '1fr 1fr' }}
+        listStyle={{ gridTemplateColumns: '1fr 1fr' }}
       />
       <p css={{ textAlign: 'center', justifySelf: 'center' }}>
         {`*Prices can be negotiated slightly if your

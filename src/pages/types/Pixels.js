@@ -39,7 +39,7 @@ const Pixels = () => {
       <h3>✧ Pixel Icons ✧</h3>
       <LabelledList
         listArray={optionList}
-        listContainerStyle={{ gridTemplateColumns: '1fr 1fr' }}
+        listStyle={{ gridTemplateColumns: '1fr 1fr' }}
       />
       <h2>✧ o r d e r - f o r m ✧</h2>
       <Fieldset

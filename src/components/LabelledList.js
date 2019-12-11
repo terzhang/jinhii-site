@@ -1,32 +1,65 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import React from 'react';
+import theme from '../theme';
 
 const LabelledList = ({
   listArray,
-  mainLabel = true,
+  title = '',
+  titleStyle = {},
+  containerStyle,
+  listContainerStyle = {},
+  listStyle = {},
   labelStyle = {},
   subLabelStyle = {},
   detailContainerStyle = {},
-  containerStyle = {},
-  listContainerStyle = {},
-  detailListContainerStyle = {}
+  detailListContainerStyle = {},
+  mainLabel = true
 }) => {
-  // wraps all the given lists
   containerStyle = {
     // style self
     width: '100%',
     maxHeight: '100%',
+    border: '2px solid pink',
+    borderRadius: '2rem',
     // style children
     display: 'flex',
     flexDirection: 'column',
-    // margin for list childrens.. kind of hacky
-    '& div': { marginTop: '0.25rem', marginBottom: '0.25rem' },
     ...containerStyle
   };
 
-  // wraps both each label and detail pairs inside the list
+  titleStyle = {
+    ...theme.subheading,
+    marginTop: '-1rem', // shift up to be on the border
+    background: theme.content.backgroundColor, // match content background color
+    alignSelf: 'center', // center itself in the cross axis,
+    // horizontal padding to cut more border off
+    paddingLeft: '0.5rem',
+    paddingRight: '0.5rem',
+    textAlign: 'center',
+    ...titleStyle
+  };
+
+  // wraps all the given lists
   listContainerStyle = {
+    // style self
+    // fill the whole border height
+    width: '100%',
+    height: '100%',
+    maxHeight: '100%',
+    /* border: '2px solid pink',
+    borderRadius: '2rem', */
+    // style children
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    // margin for list childrens.. kind of hacky
+    '& div': { marginTop: '0.25rem', marginBottom: '0.25rem' },
+    ...listContainerStyle
+  };
+
+  // wraps both each label and detail pairs inside the list
+  listStyle = {
     // style self
     width: '100%',
     maxHeight: '100%',
@@ -36,13 +69,13 @@ const LabelledList = ({
     // needs double quote and each string in the quote tag is a row
     gridTemplateAreas: `'labels details'`,
     gridGap: '2%',
-    ...listContainerStyle
+    ...listStyle
   };
 
   // wraps the whole detail section (grid area: details in listContainer)
   // override some of its parent container's style (if needed)
   detailContainerStyle = {
-    ...containerStyle,
+    ...listContainerStyle,
     // acts like an inner container
     // ! missed the 's' again
     gridArea: 'details',
@@ -54,7 +87,7 @@ const LabelledList = ({
   // wraps each nested label and detail pairs inside detailContainer
   // override some of its parent listContainer's style to become skinnier
   detailListContainerStyle = {
-    ...listContainerStyle,
+    ...listStyle,
     // shrink width by changing column template
     gridTemplateColumns: 'max-content max-content'
   };
@@ -109,9 +142,9 @@ const LabelledList = ({
           listArray={detail}
           mainLabel={false}
           // nested labelledList's container is a child of this listContainer
-          containerStyle={detailContainerStyle}
+          listContainerStyle={detailContainerStyle}
           // inner listContainer needs to have the list skinnier
-          listContainerStyle={detailListContainerStyle}
+          listStyle={detailListContainerStyle}
         />
       );
     } else if (detail === null) {
@@ -125,7 +158,7 @@ const LabelledList = ({
     // obj is a string simply render the text
     if (obj && typeof obj === 'string') {
       return (
-        <div css={listContainerStyle} key={obj}>
+        <div css={listStyle} key={obj}>
           <p>{obj}</p>
         </div>
       );
@@ -133,7 +166,7 @@ const LabelledList = ({
       // give it a label too if it's an object
       const { label, detail } = obj;
       return (
-        <div css={listContainerStyle} key={label}>
+        <div css={listStyle} key={label}>
           {renderLabel(label)}
           {renderDetail(detail)}
         </div>
@@ -142,8 +175,11 @@ const LabelledList = ({
   };
 
   return (
-    <div css={{ ...containerStyle, p: detailStyle }}>
-      {listArray.map(obj => renderArrayObj(obj))}
+    <div css={containerStyle}>
+      {title && <h3 css={titleStyle}>{title}</h3>}
+      <div css={{ ...listContainerStyle, p: detailStyle }}>
+        {listArray.map(obj => renderArrayObj(obj))}
+      </div>
     </div>
   );
 };

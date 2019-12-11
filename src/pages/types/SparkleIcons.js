@@ -17,25 +17,11 @@ const SparkleIcons = ({ containerStyle }) => {
     ...containerStyle
   };
 
-  const galleryContainerStyle = {
-    // style self
-    display: 'grid',
-    maxHeight: '100%',
-    // style self
-    gridTemplateColumns: `repeat(auto-fit, minmax(160px, 1fr))`,
-    gridTemplateRows: `repeat(auto-fit, minmax(160px, 1fr))`,
-    // for implicitly generate new rows if overflow
-    gridAutoFlow: 'row',
-    gridAutoRows: 'minmax(0, 1fr)', // assign implicit rows' dimensions
-    // space each anchor tag / img tag with a margin
-    a: { margin: '10px' }
-  };
-
   const galleryIconStyle = {
-    backgroundColor: 'pink',
+    width: '15vmin',
+    height: 'auto',
     borderRadius: '3rem',
-    objectFit: 'cover',
-    width: '100%',
+    objectFit: 'container',
     // so it doesn't overflow each grid item
     maxWidth: '100%',
     maxHeight: '100%',
@@ -138,7 +124,7 @@ const SparkleIcons = ({ containerStyle }) => {
       <h2 css={theme.heading}>✧ s p a r k l e - i c o n s ✧</h2>
       <ImageGridGallery
         requireContext={icons}
-        wrapperStyle={galleryContainerStyle}
+        //wrapperStyle={galleryContainerStyle}
         imageStyle={galleryIconStyle}
       />
       {/* options */}
