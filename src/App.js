@@ -15,13 +15,13 @@ const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   const scrollContainer = {
-    display: 'grid',
+    display: 'flex',
+    flexDirection: 'column',
     position: 'relative', // creates absolute positioning containing block
     height: 'auto',
     width: '100vw',
     minHeight: '100vh', // full scrollable height always
     overflowY: 'scroll',
-    gridTemplateColumns: '10% [content-start] 80% [content-end] 10%',
     backgroundImage: `url(${theme.background.uri})`, // background uri
     backgroundAttachment: 'scroll', // bg image scrolls with content
     backgroundSize: 'cover' // stretch to fit container... does not shrink
@@ -29,26 +29,26 @@ function App() {
 
   const contentContainer = {
     // positioning self
-    position: 'absolute',
-    zIndex: '2', // pos above background
-    gridColumn: 'content',
+    // scroll container flexes content top-down
+    // this allows align-self property to work as justify-self belongs to grid displays only
+    alignSelf: 'center',
+    position: 'relative',
     backgroundColor: theme.content.backgroundColor,
-    width: '100%',
-    height: 'fit-content', // fit to content's demand height if content overflows the page
-    minHeight: '100vh', // always at least fill the viewport
-    overflowY: 'visible',
+    padding: '5rem',
+    // no shrinking or growing
+    flexShrink: '0',
+    flexGrow: '0',
+    // height at least fill the viewport
+    minHeight: '100vh',
+    // width at least fit to children without them overflowing
+    width: 'min-content',
+    /* maxWidth: '100%', */
+    overflowY: 'visible', // allow content to go down offscreen
+    // positioning children
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     pointerEvents: 'none', // not pointer events by default
-    // grid for positioning grid contents
-    display: 'grid',
-    gridTemplateColumns: `${theme.content.padding} auto  ${theme.content.padding}`,
-    gridTemplateRows: `${theme.content.padding} auto max-content auto ${theme.content.padding}`,
-    gridTemplateAreas: `
-    '. . .'
-    '. header .'
-    '. body .'
-    '. footer .'
-    '. . .'
-    `,
     color: theme.general.color // set default color for children
   };
 
