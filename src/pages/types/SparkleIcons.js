@@ -19,18 +19,20 @@ const SparkleIcons = ({ containerStyle }) => {
     ...containerStyle
   };
 
-  const galleryColumns = 6;
+  const galleryColumns = 5;
 
-  const galleryIconStyle = {
+  const iconWrapperStyle = {
     // each icon's width is the content width subtracting its padding
-    width: `calc((${theme.content.width} - ${theme.content.paddingLeft} - ${theme.content.paddingRight}) / ${galleryColumns} )`,
+    width: `calc(100% / ${galleryColumns} )`,
     height: 'auto',
-    borderRadius: '3rem',
-    objectFit: 'contain',
     // so it doesn't overflow each grid item
     maxWidth: '100%',
-    maxHeight: '100%',
-    minWidth: '0'
+    maxHeight: '100%'
+  };
+
+  const iconStyle = {
+    borderRadius: '3rem',
+    objectFit: 'contain'
   };
 
   const optionSectionStyle = {
@@ -139,7 +141,8 @@ const SparkleIcons = ({ containerStyle }) => {
       <ImageGridGallery
         requireContext={icons}
         //wrapperStyle={galleryContainerStyle}
-        imageStyle={galleryIconStyle}
+        imageWrapperStyle={iconWrapperStyle}
+        imageStyle={iconStyle}
       />
       {/* options */}
       <div css={optionSectionStyle}>

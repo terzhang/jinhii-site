@@ -6,6 +6,7 @@ const ImageGridGallery = ({
   imageLinks = null,
   gridSize = { width: '10vw', height: '10vw' },
   wrapperStyle,
+  imageWrapperStyle,
   imageStyle
 }) => {
   // using flexBox
@@ -15,7 +16,6 @@ const ImageGridGallery = ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    a: { margin: '10px' },
     ...wrapperStyle
   };
 
@@ -38,6 +38,7 @@ const ImageGridGallery = ({
     objectPosition: 'center',
     maxWidth: '100%',
     maxHeight: '100%',
+    padding: '10px',
     ...imageStyle
   };
 
@@ -46,7 +47,7 @@ const ImageGridGallery = ({
     requireContext.keys().map(fileName => {
       let src = requireContext(fileName);
       return (
-        <a href={src} key={fileName}>
+        <a href={src} key={fileName} css={imageWrapperStyle}>
           <img src={src} alt='' css={imageStyle} />
         </a>
       );
@@ -55,7 +56,7 @@ const ImageGridGallery = ({
   // display using cdn links
   const galleryByCdn = () =>
     imageLinks.map(link => (
-      <a href={link}>
+      <a href={link} css={imageWrapperStyle}>
         <img src={link} alt='' css={imageStyle} />
       </a>
     ));

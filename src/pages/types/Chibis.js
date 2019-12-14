@@ -16,6 +16,14 @@ const Chibis = ({ containerStyle }) => {
     ...containerStyle
   };
 
+  const galleryColumns = 3;
+
+  const imageWrapperStyle = {
+    padding: '10px',
+    width: `calc(100% / ${galleryColumns})`,
+    height: 'auto'
+  };
+
   const handleSubmit = fields => {
     console.log(fields);
   };
@@ -44,7 +52,8 @@ const Chibis = ({ containerStyle }) => {
       <h3 css={{ ...theme.heading, textAlign: 'center' }}>✧ Lined Chibis ✧</h3>
       <ImageGridGallery
         requireContext={linedChibis}
-        imageStyle={{ width: '25vmin', height: 'auto', objectFit: 'contain' }}
+        imageWrapperStyle={imageWrapperStyle}
+        imageStyle={{ objectFit: 'contain' }}
       />
       <RenderList listArray={lineChibiDetails} label={null} />
       <h3 css={{ ...theme.heading, textAlign: 'center' }}>
@@ -52,7 +61,8 @@ const Chibis = ({ containerStyle }) => {
       </h3>
       <ImageGridGallery
         requireContext={linelessChibis}
-        imageStyle={{ width: '25vmin', height: 'auto%', objectFit: 'contain' }}
+        imageWrapperStyle={imageWrapperStyle}
+        imageStyle={{ objectFit: 'contain' }}
       />
       <h3>✧ o r d e r - f o r m ✧</h3>
       <Fieldset
