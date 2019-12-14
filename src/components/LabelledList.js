@@ -141,6 +141,7 @@ const LabelledList = ({
         <LabelledList
           listArray={detail}
           mainLabel={false}
+          containerStyle={containerStyle}
           // nested labelledList's container is a child of this listContainer
           listContainerStyle={detailContainerStyle}
           // inner listContainer needs to have the list skinnier

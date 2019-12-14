@@ -8,20 +8,17 @@ const About = ({ containerStyle }) => {
     marginLeft: theme.general.margin, // to indent texts a bit
     marginRight: theme.general.margin,
     // position children
-    display: 'grid',
-    gridTemplateRows: 'auto auto auto',
-    gridTemplateAreas: `
-    'title' 'image' 'text'
-    `,
+    display: 'flex',
+    flexDirection: 'column',
     justifyItems: 'center',
     ...containerStyle
   };
 
   const paragraphStyle = {
-    gridArea: 'text',
     textAlign: 'start',
     fontSize: theme.text.fontSize,
     fontWeight: theme.text.fontWeight,
+    border: 'none',
     // allow interaction
     pointerEvents: 'auto'
   };
@@ -65,9 +62,9 @@ const About = ({ containerStyle }) => {
 
   return (
     <div css={containerStyle}>
-      <h2 css={{ gridArea: 'title' }}>✧ a b o u t ✧</h2>
+      <h2>✧ a b o u t ✧</h2>
       <img
-        css={{ gridArea: 'image', width: '50%' }}
+        css={{ objectFit: 'contain', height: '50%' }}
         src={require('../assets/Smol_Cheeb_Witch_Celeste.png')}
         alt="Jinhii's Smol Witch - Celeste"
       />
