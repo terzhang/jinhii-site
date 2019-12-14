@@ -4,23 +4,20 @@ import React from 'react';
 import theme from '../theme';
 import { Link } from '@reach/router';
 
-/* const HeaderButton = ({ onClick, label, nav }) => { */
-const HeaderButton = props => {
-  const { label, nav } = props;
-  const containerStyle = {
-    // self pos
-    gridColumn: 'span 1 / span 1',
-    width: 'auto',
-    height: '100%',
-    // self style
-    ...theme.button,
+const NavButton = ({ label, to, listItemStyle, buttonStyle }) => {
+  listItemStyle = {
+    // fills and shrink to a factor of 1
+    flex: '1',
+    ...listItemStyle
+  };
+
+  buttonStyle = {
+    // style children
     textAlign: 'center',
-    // onHover
-    ':hover': theme.button_hover,
-    // child pos
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    ...buttonStyle
   };
 
   // Link styled differently (like hovered) if App is at the Link's pointed location
@@ -32,13 +29,14 @@ const HeaderButton = props => {
   // to generate className for Link Component to pass to its inner anchor tag
   // https://reach.tech/router/api/Link
   return (
-    <li>
+    /* so all item */
+    <li css={listItemStyle}>
       <ClassNames>
         {({ css, cx }) => (
           <Link
-            to={nav}
+            to={to}
             // getProps={props => isWithinLocation(props)}
-            className={css({ ...containerStyle })}
+            className={css(buttonStyle)}
           >
             {label}
           </Link>
@@ -48,4 +46,4 @@ const HeaderButton = props => {
   );
 };
 
-export default HeaderButton;
+export default NavButton;

@@ -5,6 +5,7 @@ import './App.css';
 import theme, { socialMediaIcons } from './theme';
 import { Router } from '@reach/router';
 const Header = lazy(() => import('./components/Header'));
+const Nav = lazy(() => import('./components/Nav'));
 const Footer = lazy(() => import('./components/Footer'));
 // lazy dynamic importing for suspense
 const Home = lazy(() => import('./pages/Home'));
@@ -41,8 +42,9 @@ function App() {
     // height at least fill the viewport
     minHeight: '100vh',
     // width at least fit to children without them overflowing
-    width: 'min-content',
-    /* maxWidth: '100%', */
+    minWidth: 'min-content',
+    width: '60rem',
+    maxWidth: '100%',
     overflowY: 'visible', // allow content to go down offscreen
     // positioning children
     display: 'flex',
@@ -73,17 +75,20 @@ function App() {
     display: 'flex',
     flexDirection: 'column',
     minHeight: 'fit-content',
-    alignContent: 'center'
+    alignContent: 'center',
+    paddingTop: '2rem',
+    paddingBottom: '2rem'
   };
 
-  const Loader = () => (
+  const Loader = ({ wrapperStyle }) => (
     <div
-      style={{
+      css={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        ...wrapperStyle
       }}
     >
       Loading Meow...
@@ -94,26 +99,24 @@ function App() {
     <div css={scrollContainer}>
       <Global styles={globalStyle} />
       <div css={contentContainer}>
-        {/* Header */}
+        {/* Header and navigation */}
         <Suspense fallback={<Loader />}>
-          <Header containerStyle={{ gridArea: 'header' }} />
+          <Header />
+          <Nav />
         </Suspense>
         {/* body*/}
         <Suspense fallback={<Loader />}>
           <Router css={bodyStyle}>
             <Home path='/' default />
             <About path='about' />
-            <Commissions path='commissions'></Commissions>
+            <Commissions path='commissions' />
             <ToS path='tos' />
             <Contact path='contact' />
           </Router>
         </Suspense>
         {/* Footer*/}
         <Suspense fallback={<Loader />}>
-          <Footer
-            containerStyle={{ gridArea: 'footer' }}
-            icons={socialMediaIcons}
-          />
+          <Footer icons={socialMediaIcons} />
         </Suspense>
       </div>
     </div>

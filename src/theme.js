@@ -7,8 +7,10 @@ const theme = {
     borderRadius: '2rem',
     fontColor: '#FFFFAC',
     color: '#FFFFAC',
-    fontSize: '1.5rem',
-    fontWeight: '400'
+    fontSize: '1rem',
+    fontWeight: '400',
+    padding: '1rem',
+    margin: '0.5rem'
   },
   button_hover: {
     backgroundColor: '#E199B5'
