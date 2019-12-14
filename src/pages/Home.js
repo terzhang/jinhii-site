@@ -5,8 +5,8 @@ import theme from '../theme';
 const Home = ({ containerStyle }) => {
   containerStyle = {
     ...containerStyle,
-    marginLeft: theme.general.margin, // to indent texts a bit
-    marginRight: theme.general.margin,
+    marginLeft: '5%', // to indent texts a bit
+    marginRight: '5%',
     // position children
     display: 'flex',
     flexDirection: 'column',

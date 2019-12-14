@@ -1,6 +1,14 @@
 const theme = {
   general: { color: '#73509E', hoverColor: '#E199B5', margin: '10%' },
-  content: { padding: '10%', backgroundColor: 'white' },
+  content: {
+    backgroundColor: 'white',
+    width: '60rem',
+    paddingLeft: '5rem',
+    paddingRight: '5rem',
+    paddingTop: '5rem',
+    paddingBottom: '5rem',
+    padding: '5rem'
+  },
   header: { title: '【✧JINHII✧】', fontSize: '3rem' },
   button: {
     backgroundColor: '#73509E',

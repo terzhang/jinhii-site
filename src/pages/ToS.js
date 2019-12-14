@@ -5,8 +5,8 @@ import RenderList from '../components/RenderList';
 
 const ToS = ({ containerStyle }) => {
   containerStyle = {
-    marginLeft: theme.general.margin, // to indent texts a bit
-    marginRight: theme.general.margin,
+    marginLeft: '5%', // to indent texts a bit
+    marginRight: '5%',
     // position children
     display: 'grid',
     gridTemplateColumns: 'auto auto',
@@ -67,7 +67,7 @@ const ToS = ({ containerStyle }) => {
         <strong
           css={{ display: 'grid', textAlign: 'center', fontWeight: 'bold' }}
         >
-          {`By commissioning me, you are agreeing to my terms of service, 
+          {`By commissioning me, you are agreeing to my terms of service,
           so please read it thoroughly before commissioning!`}
         </strong>
         <RenderList listArray={terms} />

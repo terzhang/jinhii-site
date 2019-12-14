@@ -5,6 +5,7 @@ import theme from '../theme';
 const Header = ({ containerStyle }) => {
   containerStyle = {
     display: 'flex',
+    flexDirection: 'column',
     ...containerStyle
   };
 

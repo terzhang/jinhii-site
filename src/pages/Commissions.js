@@ -47,8 +47,6 @@ const Commissions = ({ containerStyle }) => {
     // position children
     display: 'flex',
     flexDirection: 'column',
-    marginLeft: theme.general.margin, // to indent texts a bit
-    marginRight: theme.general.margin,
     height: '100%',
     ...containerStyle
   };

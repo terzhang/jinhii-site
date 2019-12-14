@@ -35,15 +35,15 @@ function App() {
     alignSelf: 'center',
     position: 'relative',
     backgroundColor: theme.content.backgroundColor,
-    padding: '5rem',
-    // no shrinking or growing
+    padding: theme.content.padding,
+    // no shrinking or growing (fix for chrome)
     flexShrink: '0',
     flexGrow: '0',
     // height at least fill the viewport
     minHeight: '100vh',
     // width at least fit to children without them overflowing
     minWidth: 'min-content',
-    width: '60rem',
+    width: theme.content.width,
     maxWidth: '100%',
     overflowY: 'visible', // allow content to go down offscreen
     // positioning children
