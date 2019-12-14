@@ -8,17 +8,14 @@ const Home = ({ containerStyle }) => {
     marginLeft: theme.general.margin, // to indent texts a bit
     marginRight: theme.general.margin,
     // position children
-    display: 'grid',
-    gridTemplateColumns: 'auto auto auto',
-    gridTemplateRows: 'auto',
-    gridTemplateAreas: `
-    'title' 'image' 'text'
-    `,
-    justifyItems: 'center'
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   };
 
   const paragraphStyle = {
     gridArea: 'text',
+    alignSelf: 'start',
     textAlign: 'center',
     fontSize: theme.text.fontSize,
     fontWeight: theme.text.fontWeight

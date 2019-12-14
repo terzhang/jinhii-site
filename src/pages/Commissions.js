@@ -53,7 +53,7 @@ const Commissions = ({ containerStyle }) => {
     ...containerStyle
   };
 
-  const typesButtonContainerStyle = {
+  const buttonListStyle = {
     display: 'flex',
     flexDirection: 'column',
     li: {
@@ -65,8 +65,9 @@ const Commissions = ({ containerStyle }) => {
     a: {
       ...theme.typesButton,
       ':hover': { ...theme.typesButton_hover },
+      // height and width decided by font size and padding
       width: 'auto',
-      height: String(cssUnitToNumber(theme.typesButton.fontSize) * 1.5) + 'rem',
+      height: 'auto',
       textAlign: 'center',
       alignItems: 'center'
     }
@@ -97,7 +98,7 @@ const Commissions = ({ containerStyle }) => {
     return (
       <>
         <h2>✧ t y p e s ✧</h2>
-        <ul css={typesButtonContainerStyle}>{buttonArray}</ul>
+        <ul css={buttonListStyle}>{buttonArray}</ul>
       </>
     );
   };
