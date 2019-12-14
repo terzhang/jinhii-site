@@ -19,11 +19,14 @@ const SparkleIcons = ({ containerStyle }) => {
     ...containerStyle
   };
 
+  const galleryColumns = 6;
+
   const galleryIconStyle = {
-    width: '15vmin',
+    // each icon's width is the content width subtracting its padding
+    width: `calc((${theme.content.width} - ${theme.content.paddingLeft} - ${theme.content.paddingRight}) / ${galleryColumns} )`,
     height: 'auto',
     borderRadius: '3rem',
-    objectFit: 'container',
+    objectFit: 'contain',
     // so it doesn't overflow each grid item
     maxWidth: '100%',
     maxHeight: '100%',
