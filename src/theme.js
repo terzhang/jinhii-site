@@ -1,5 +1,5 @@
 const theme = {
-  general: { color: '#73509E', hoverColor: '#E199B5', margin: '10%' },
+  general: { color: '#73509E', hoverColor: '#E199B5', marginBottom: '1rem' },
   content: {
     backgroundColor: 'white',
     width: '60rem',
