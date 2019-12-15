@@ -54,7 +54,6 @@ const Normal = () => {
       </h2>
       <ImageGridGallery
         requireContext={normals}
-        // gridSize={{ width: '10vh', height: '10vh' }}
         imageStyle={{ height: '10rem', width: '10rem', objectFit: 'cover' }}
       />
       {/* normal options */}

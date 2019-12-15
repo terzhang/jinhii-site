@@ -12,6 +12,13 @@ const KofiEmotes = () => {
     flexDirection: 'column'
   };
 
+  const galleryColumn = 4;
+
+  const emoteWrapperStyle = {
+    width: `calc(100% / ${galleryColumn})`,
+    height: 'auto'
+  };
+
   const baseImageStyle = {
     objectFit: 'contain'
   };
@@ -42,7 +49,8 @@ const KofiEmotes = () => {
       <h2>✧ k o - f i - e m o t e s ✧</h2>
       <ImageGridGallery
         requireContext={sipEmotes}
-        imageStyle={{ objectFit: 'contain', height: '20vmin', width: '20vmin' }}
+        imageWrapperStyle={emoteWrapperStyle}
+        imageStyle={{ objectFit: 'contain' }}
       />
       <LabelledList listArray={sipEmoteOptions} title={'✧ Sip Emotes ✧'} />
       <p css={{ alignSelf: 'center' }}>
