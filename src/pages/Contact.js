@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import { socialMediaIcons } from '../theme';
 import useTextCopy from '../hooks/useTextCopy';
 
-const Contact = ({ containerStyle }) => {
+const Contact = ({ wrapperStyle }) => {
   const [filteredIcons, setFilteredIcons] = useState({});
 
   // filter the icons based on the iconSelected array on mount and recalculates when the array changes
@@ -22,10 +22,10 @@ const Contact = ({ containerStyle }) => {
 
   // method that render a mini footer given a style
   const miniFooter = style => (
-    <Footer icons={filteredIcons} containerStyle={style} />
+    <Footer icons={filteredIcons} wrapperStyle={style} />
   );
 
-  containerStyle = {
+  wrapperStyle = {
     // position children
     display: 'grid',
     gridTemplateRows: 'repeat(3, minmax(auto, max-content))',
@@ -36,7 +36,7 @@ const Contact = ({ containerStyle }) => {
     button: {
       pointerEvents: 'auto'
     },
-    ...containerStyle
+    ...wrapperStyle
   };
 
   const buttonStyle = { height: '2rem', marginLeft: '1rem' };
@@ -44,7 +44,7 @@ const Contact = ({ containerStyle }) => {
   const { textAreaRef, copyToClipboard, copySuccess } = useTextCopy();
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       {/* subheading */}
       <h2 css={{ gridArea: 'title' }}>✧ c o n t a c t ✧</h2>
       {/* mini footer */}

@@ -48,7 +48,7 @@ const LabelledList = ({
     height: '100%',
     maxHeight: '100%',
     // padding
-    padding: '1rem',
+    padding: '0.5rem',
     // style children
     display: 'flex',
     flexDirection: 'column',

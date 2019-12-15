@@ -2,9 +2,9 @@
 import { jsx } from '@emotion/core';
 import theme from '../theme';
 
-const Home = ({ containerStyle }) => {
-  containerStyle = {
-    ...containerStyle,
+const Home = ({ wrapperStyle }) => {
+  wrapperStyle = {
+    ...wrapperStyle,
     marginLeft: '5%', // to indent texts a bit
     marginRight: '5%',
     // position children
@@ -22,7 +22,7 @@ const Home = ({ containerStyle }) => {
   };
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       <h2 css={{ gridArea: 'title' }}>✧ w e l c o m e ✧</h2>
       <img
         css={{ gridArea: 'image', width: '50%' }}

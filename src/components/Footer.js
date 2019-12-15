@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import theme from '../theme';
 import FooterItem from './FooterItem';
 
-const Footer = ({ icons, containerStyle }) => {
+const Footer = ({ icons, wrapperStyle }) => {
   const renderIcons = () => {
     return Object.keys(icons).map((key, index) => {
       let icon = icons[key]; // deconstruct out each icon's property
@@ -21,7 +21,7 @@ const Footer = ({ icons, containerStyle }) => {
     });
   };
 
-  containerStyle = {
+  wrapperStyle = {
     display: 'grid',
     width: '100%',
     height: '100%',
@@ -32,10 +32,10 @@ const Footer = ({ icons, containerStyle }) => {
     gridTemplateRows: 'auto',
     gridGap: '2%',
     gridAutoFlow: 'row', // overflowing grid items gets squeezed onto the next row
-    ...containerStyle
+    ...wrapperStyle
   };
 
-  return <div css={containerStyle}>{renderIcons()}</div>;
+  return <div css={wrapperStyle}>{renderIcons()}</div>;
 };
 
 export default Footer;

@@ -3,15 +3,15 @@ import { jsx } from '@emotion/core';
 import theme from '../theme';
 import LabelledList from '../components/LabelledList';
 
-const About = ({ containerStyle }) => {
-  containerStyle = {
+const About = ({ wrapperStyle }) => {
+  wrapperStyle = {
     marginLeft: theme.general.margin, // to indent texts a bit
     marginRight: theme.general.margin,
     // position children
     display: 'flex',
     flexDirection: 'column',
     justifyItems: 'center',
-    ...containerStyle
+    ...wrapperStyle
   };
 
   const paragraphStyle = {
@@ -61,7 +61,7 @@ const About = ({ containerStyle }) => {
   ];
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       <h2>✧ a b o u t ✧</h2>
       <img
         css={{ objectFit: 'contain', height: '50%' }}
@@ -71,7 +71,7 @@ const About = ({ containerStyle }) => {
       <LabelledList
         listArray={nestedArray}
         listStyle={{ gridTemplateColumns: '1fr 4fr' }}
-        containerStyle={paragraphStyle}
+        wrapperStyle={paragraphStyle}
       />
     </div>
   );

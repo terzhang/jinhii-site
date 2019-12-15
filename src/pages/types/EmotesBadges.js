@@ -19,7 +19,7 @@ const EmotesBadges = ({ wrapperStyle }) => {
     height: 'auto',
     // style content
     display: 'inline-grid',
-    gridTemplateColumns: '1fr 5% 1fr',
+    gridTemplateColumns: '1fr 1rem 1fr',
     gridTemplateRows: 'max-content',
     gridTemplateAreas: `
     'twitch . discord'

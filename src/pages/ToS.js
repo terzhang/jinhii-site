@@ -3,8 +3,8 @@ import { jsx } from '@emotion/core';
 import theme from '../theme';
 import RenderList from '../components/RenderList';
 
-const ToS = ({ containerStyle }) => {
-  containerStyle = {
+const ToS = ({ wrapperStyle }) => {
+  wrapperStyle = {
     marginLeft: '5%', // to indent texts a bit
     marginRight: '5%',
     // position children
@@ -16,7 +16,7 @@ const ToS = ({ containerStyle }) => {
     `,
     justifyItems: 'center',
     pointerEvents: 'auto',
-    ...containerStyle
+    ...wrapperStyle
   };
 
   const paragraphStyle = {
@@ -59,7 +59,7 @@ const ToS = ({ containerStyle }) => {
   ];
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       <h2 css={{ gridArea: 'title', ...theme.heading, textAlign: 'center' }}>
         {'✧ t e r m s - o f - s e r v i c e ✧'}
       </h2>
