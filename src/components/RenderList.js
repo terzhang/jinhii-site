@@ -8,13 +8,13 @@ const RenderList = ({
   listArray,
   label,
   labelStyle,
-  containerStyle,
+  wrapperStyle,
   textStyle
 }) => {
-  containerStyle = {
+  wrapperStyle = {
     display: 'flex',
     flexDirection: 'column',
-    ...containerStyle
+    ...wrapperStyle
   };
 
   textStyle = {
@@ -40,7 +40,7 @@ const RenderList = ({
   ));
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       {label && <h3 css={labelStyle}>{label}</h3>}
       {list}
     </div>

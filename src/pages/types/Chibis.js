@@ -3,17 +3,17 @@ import { jsx } from '@emotion/core';
 import theme from '../../theme';
 import { linedChibis, linelessChibis } from '../../assets/chibis/index';
 import Fieldset from '../../components/Fieldset';
-import RenderList from '../../components/RenderList';
+import LabelledList from '../../components/LabelledList';
 import ImageGridGallery from '../../components/ImageGridGallery';
 
-const Chibis = ({ containerStyle }) => {
-  containerStyle = {
+const Chibis = ({ wrapperStyle }) => {
+  wrapperStyle = {
     width: '100%',
     height: 'fit-content',
     // container needs to flex to fit child contents
     display: 'flex',
     flexDirection: 'column',
-    ...containerStyle
+    ...wrapperStyle
   };
 
   const galleryColumns = 3;
@@ -36,17 +36,25 @@ const Chibis = ({ containerStyle }) => {
     { label: 'important notes/questions', placeholder: '' }
   ];
 
-  const lineChibiDetails = [
-    'cleaned sketch - 35 USD per character',
-    'thick lines - 65 USD per character',
-    'thin lines - 70 USD per character',
-    'transparent/simple pattern/color/gradient background - included',
-    'semi-detailed background - 5-25 USD',
-    'detailed background - 30+ USD'
+  const linedOptions = [
+    { label: 'cleaned sketch', detail: '35 USD per character' },
+    { label: 'thick lines', detail: '65 USD per character' },
+    { label: 'thin lines', detail: '70 USD per character' },
+    { label: 'semi-detailed background', detail: '5-25 USD' },
+    { label: 'detailed background', detail: '30+ USD' },
+    'transparent/simple pattern/color/gradient background included'
+  ];
+
+  const linelessOptions = [
+    { label: 'simple', detail: '35 USD / character' },
+    { label: 'complex', detail: '50 USD / character' },
+    { label: 'semi-detailed', detail: '5-25 USD' },
+    { label: 'detailed', detail: '30+ USD' },
+    'pattern/color/gradient background included'
   ];
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       <h2 css={{ ...theme.heading, textAlign: 'center' }}>✧ c h i b i s ✧</h2>
       {/* Lined chibi gallery */}
       <h3 css={{ ...theme.heading, textAlign: 'center' }}>✧ Lined Chibis ✧</h3>
@@ -55,7 +63,7 @@ const Chibis = ({ containerStyle }) => {
         imageWrapperStyle={imageWrapperStyle}
         imageStyle={{ objectFit: 'contain' }}
       />
-      <RenderList listArray={lineChibiDetails} label={null} />
+      <LabelledList listArray={linedOptions} />
       <h3 css={{ ...theme.heading, textAlign: 'center' }}>
         ✧ Lineless Chibis ✧
       </h3>
@@ -64,6 +72,7 @@ const Chibis = ({ containerStyle }) => {
         imageWrapperStyle={imageWrapperStyle}
         imageStyle={{ objectFit: 'contain' }}
       />
+      <LabelledList listArray={linelessOptions} />
       <h3>✧ o r d e r - f o r m ✧</h3>
       <Fieldset
         formFields={fieldList}

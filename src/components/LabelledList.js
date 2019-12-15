@@ -7,7 +7,7 @@ const LabelledList = ({
   listArray,
   title = '',
   titleStyle = {},
-  containerStyle,
+  wrapperStyle,
   listContainerStyle = {},
   listStyle = {},
   labelStyle = {},
@@ -16,7 +16,7 @@ const LabelledList = ({
   detailListContainerStyle = {},
   mainLabel = true
 }) => {
-  containerStyle = {
+  wrapperStyle = {
     // style self
     width: '100%',
     maxHeight: '100%',
@@ -25,7 +25,7 @@ const LabelledList = ({
     // style children
     display: 'flex',
     flexDirection: 'column',
-    ...containerStyle
+    ...wrapperStyle
   };
 
   titleStyle = {
@@ -47,8 +47,8 @@ const LabelledList = ({
     width: '100%',
     height: '100%',
     maxHeight: '100%',
-    /* border: '2px solid pink',
-    borderRadius: '2rem', */
+    // padding
+    padding: '1rem',
     // style children
     display: 'flex',
     flexDirection: 'column',
@@ -141,7 +141,7 @@ const LabelledList = ({
         <LabelledList
           listArray={detail}
           mainLabel={false}
-          containerStyle={containerStyle}
+          wrapperStyle={wrapperStyle}
           // nested labelledList's container is a child of this listContainer
           listContainerStyle={detailContainerStyle}
           // inner listContainer needs to have the list skinnier
@@ -160,7 +160,7 @@ const LabelledList = ({
     if (obj && typeof obj === 'string') {
       return (
         <div css={listStyle} key={obj}>
-          <p css={{ gridColumn: '1 / -1' }}>{obj}</p>
+          <p css={{ gridColumn: '1 / -1', justifySelf: 'center' }}>{obj}</p>
         </div>
       );
     } else if (typeof obj === 'object') {
@@ -176,7 +176,7 @@ const LabelledList = ({
   };
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       {title && <h3 css={titleStyle}>{title}</h3>}
       <div css={{ ...listContainerStyle, p: detailStyle }}>
         {listArray.map(obj => renderArrayObj(obj))}
