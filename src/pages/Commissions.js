@@ -16,39 +16,53 @@ const CustomUgc = lazy(() => import(typesPath + 'CustomUgc'));
 const CustomWallpaper = lazy(() => import(typesPath + 'CustomWallpaper'));
 const Logos = lazy(() => import(typesPath + 'Logos'));
 
+const pageWrapper = {
+  // direct descendents gets a bottom margin to space out
+  '& > *': {
+    marginBottom: theme.general.marginBottom
+  }
+};
+
 const typesObj = {
   sparkleIcons: {
     label: 'sparkle icons',
-    render: <SparkleIcons />
+    render: <SparkleIcons wrapperStyle={pageWrapper} />
   },
-  chibis: { label: 'chibis', render: <Chibis /> },
-  normal: { label: 'normal', render: <Normal /> },
-  pixels: { label: 'pixels', render: <Pixels /> },
+  chibis: { label: 'chibis', render: <Chibis wrapperStyle={pageWrapper} /> },
+  normal: { label: 'normal', render: <Normal wrapperStyle={pageWrapper} /> },
+  pixels: { label: 'pixels', render: <Pixels wrapperStyle={pageWrapper} /> },
   emotesBadges: {
     label: 'emotes/badges',
-    render: <EmotesBadges />
+    render: <EmotesBadges wrapperStyle={pageWrapper} />
   },
   kofiEmotes: {
     label: 'ko-fi emotes',
-    render: <KofiEmotes />
+    render: <KofiEmotes wrapperStyle={pageWrapper} />
   },
-  customUgc: { label: 'custom ugc', render: <CustomUgc /> },
+  customUgc: {
+    label: 'custom ugc',
+    render: <CustomUgc wrapperStyle={pageWrapper} />
+  },
   customWallpaper: {
     label: 'custom wallpaper',
-    render: <CustomWallpaper />
+    render: <CustomWallpaper wrapperStyle={pageWrapper} />
   },
-  logos: { label: 'logos', render: <Logos /> }
+  logos: { label: 'logos', render: <Logos wrapperStyle={pageWrapper} /> }
 };
 
-const Commissions = ({ containerStyle }) => {
+const Commissions = ({ wrapperStyle }) => {
   const [commissionType, setCommissionType] = useState('default');
 
-  containerStyle = {
+  wrapperStyle = {
     // position children
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    ...containerStyle
+    // commission page's direct descendents also gets a bottom margin
+    '& > *': {
+      marginBottom: theme.general.marginBottom
+    },
+    ...wrapperStyle
   };
 
   const buttonListStyle = {
@@ -113,7 +127,7 @@ const Commissions = ({ containerStyle }) => {
   };
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       <h2 css={{ textAlign: 'center' }}>✧ c o m m i s s i o n s ✧</h2>
       <p css={{ textAlign: 'center' }}>
         <strong>

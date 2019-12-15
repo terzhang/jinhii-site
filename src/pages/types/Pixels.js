@@ -1,16 +1,18 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import theme from '../../theme';
 import ImageGridGallery from '../../components/ImageGridGallery';
 import { bigPixels, smallPixels } from '../../assets/pixels/index';
 import LabelledList from '../../components/LabelledList';
 import Fieldset from '../../components/Fieldset';
 
-const Pixels = () => {
-  const wrapperStyle = {
+const Pixels = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    minHeight: 'max-content'
+    minHeight: 'max-content',
+    ...wrapperStyle
   };
 
   const optionList = [
@@ -34,10 +36,10 @@ const Pixels = () => {
     <div css={wrapperStyle}>
       <h2>✧ p i x e l s ✧</h2>
       <ImageGridGallery requireContext={smallPixels} />
-      <p>click thumbnails to view full size!</p>
+      <p css={{ alignSelf: 'center' }}>click thumbnails to view full size!</p>
       <ImageGridGallery requireContext={bigPixels} />
-      <h3>✧ Pixel Icons ✧</h3>
       <LabelledList
+        title={'✧ Pixel Icons ✧'}
         listArray={optionList}
         listStyle={{ gridTemplateColumns: '1fr 1fr' }}
       />

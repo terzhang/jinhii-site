@@ -6,10 +6,11 @@ import LabelledList from '../../components/LabelledList';
 import { ugcs } from '../../assets/customUgc/index';
 import Fieldset from '../../components/Fieldset';
 
-const CustomUgc = () => {
-  const wrapperStyle = {
+const CustomUgc = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    ...wrapperStyle
   };
 
   const ugcGalleryStyle = {

@@ -6,10 +6,11 @@ import LabelledList from '../../components/LabelledList';
 import { sipEmotes, bases } from '../../assets/kofiEmotes/index';
 import Fieldset from '../../components/Fieldset';
 
-const KofiEmotes = () => {
-  const wrapperStyle = {
+const KofiEmotes = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    ...wrapperStyle
   };
 
   const galleryColumn = 4;

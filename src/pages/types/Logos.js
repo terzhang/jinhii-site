@@ -6,10 +6,11 @@ import LabelledList from '../../components/LabelledList';
 import { logos } from '../../assets/logos/index';
 import Fieldset from '../../components/Fieldset';
 
-const Logos = () => {
-  const wrapperStyle = {
+const Logos = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    ...wrapperStyle
   };
 
   const optionSectionStyle = {
@@ -52,12 +53,12 @@ const Logos = () => {
       />
       <div css={optionSectionStyle}>
         <LabelledList
-          containerStyle={{ gridArea: 'commercial' }}
+          wrapperStyle={{ gridArea: 'commercial' }}
           listArray={commercialOptions}
           title={'✧ Non-Commercial ✧'}
         />
         <LabelledList
-          containerStyle={{ gridArea: 'non-commercial' }}
+          wrapperStyle={{ gridArea: 'non-commercial' }}
           listArray={nonCommercialOptions}
           title={'✧ Commercial ✧'}
         />

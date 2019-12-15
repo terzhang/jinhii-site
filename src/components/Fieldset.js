@@ -12,16 +12,23 @@ const Fieldset = ({
   onSubmit
 }) => {
   wrapperStyle = {
-    border: `5px solid ${theme.general.color}`,
+    borderWidth: '5px',
+    borderStyle: 'solid',
+    borderColor: theme.general.color,
     display: 'flex',
     flexDirection: 'column',
+    position: 'relative',
     ...wrapperStyle
   };
 
   legendStyle = {
     ...theme.subheading,
     textAlign: 'center',
-    marginLeft: '35%',
+    position: 'absolute',
+    // shift it up relative to parent to sit on border
+    top: `calc((-${theme.subheading.fontSize} / 2 ) - ${wrapperStyle.borderWidth})`,
+    backgroundColor: theme.content.backgroundColor,
+    alignSelf: 'center',
     ...legendStyle
   };
 
@@ -32,7 +39,7 @@ const Fieldset = ({
         <Form
           inputList={formFields}
           onSubmit={fields => onSubmit(fields)}
-          containerStyle={{ pointerEvents: 'auto' }}
+          wrapperStyle={{ pointerEvents: 'auto' }}
         />
       }
     </fieldset>

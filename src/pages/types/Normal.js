@@ -5,12 +5,13 @@ import normals from '../../assets/normal/index';
 import Fieldset from '../../components/Fieldset';
 import ImageGridGallery from '../../components/ImageGridGallery';
 
-const Normal = () => {
-  const wrapperStyle = {
+const Normal = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    minHeight: 'max-content'
+    minHeight: 'max-content',
+    ...wrapperStyle
   };
 
   const optionsList = [
@@ -56,20 +57,18 @@ const Normal = () => {
         requireContext={normals}
         imageStyle={{ height: '10rem', width: '10rem', objectFit: 'cover' }}
       />
-      {/* normal options */}
-      <h3 css={{ textAlign: 'center', justifySelf: 'center' }}>
-        ✧ Lined/Lineless ✧
-      </h3>
+      {/* options */}
       <LabelledList
-        containerStyle={{}}
+        wrapperStyle={{}}
         listArray={optionsList}
         listStyle={{ gridTemplateColumns: '1fr 1fr' }}
+        title={'✧ Lined/Lineless ✧'}
       />
-      <h3>Extras:</h3>
       <LabelledList
-        containerStyle={{}}
+        wrapperStyle={{}}
         listArray={extrasList}
         listStyle={{ gridTemplateColumns: '1fr 1fr' }}
+        title={'Extras:'}
       />
       <p css={{ textAlign: 'center', justifySelf: 'center' }}>
         {`*Prices can be negotiated slightly if your

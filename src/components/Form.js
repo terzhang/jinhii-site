@@ -4,16 +4,19 @@ import React from 'react';
 import useInput from '../hooks/useInput';
 import theme from '../theme';
 
-const Form = ({ onSubmit, containerStyle, inputList }) => {
+const Form = ({ onSubmit, wrapperStyle, inputList }) => {
   const { value: fields, setValue: setFields, reset: resetFields } = useInput(
     {}
   );
 
   // form container styling
-  containerStyle = {
+  wrapperStyle = {
     position: 'relative',
     width: '100%',
     height: 'fit-content',
+    // padding top is great since label dips a bit
+    paddingTop: '2rem',
+    paddingBottom: '1rem',
     // inner grid
     display: 'grid',
     gridTemplateRows: `repeat(${inputList.length}, minmax(0, 1fr))`,
@@ -28,7 +31,7 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
       alignSelf: 'center',
       gridColumn: '1/2'
     },
-    ...containerStyle
+    ...wrapperStyle
   };
 
   // the inputs
@@ -107,7 +110,7 @@ const Form = ({ onSubmit, containerStyle, inputList }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} css={containerStyle}>
+    <form onSubmit={handleSubmit} css={wrapperStyle}>
       {renderInputs(inputList)}
       <input type='submit' value='Submit' css={buttonStyle} />
     </form>

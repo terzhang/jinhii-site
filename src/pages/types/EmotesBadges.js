@@ -6,10 +6,11 @@ import ImageGridGallery from '../../components/ImageGridGallery';
 import LabelledList from '../../components/LabelledList';
 import Fieldset from '../../components/Fieldset';
 
-const EmotesBadges = () => {
-  const wrapperStyle = {
+const EmotesBadges = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    ...wrapperStyle
   };
 
   const optionSectionStyle = {
@@ -85,12 +86,12 @@ const EmotesBadges = () => {
       {/* twitch and discord emotes options */}
       <div css={optionSectionStyle}>
         <LabelledList
-          containerStyle={{ gridArea: 'twitch' }}
+          wrapperStyle={{ gridArea: 'twitch' }}
           listArray={twitchOptions}
           title={'✧ Twitch Emotes ✧'}
         />
         <LabelledList
-          containerStyle={{ gridArea: 'discord' }}
+          wrapperStyle={{ gridArea: 'discord' }}
           listArray={discordOptions}
           title={'✧ Discord Emotes ✧'}
         />

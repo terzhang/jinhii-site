@@ -6,10 +6,11 @@ import LabelledList from '../../components/LabelledList';
 import { wallpapers } from '../../assets/customWallpaper/index';
 import Fieldset from '../../components/Fieldset';
 
-const CustomWallpaper = () => {
-  const wrapperStyle = {
+const CustomWallpaper = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    ...wrapperStyle
   };
 
   const galleryImageStyle = {
@@ -64,13 +65,13 @@ const CustomWallpaper = () => {
       {/* options */}
       <div css={optionSectionStyle}>
         <LabelledList
-          containerStyle={{ gridArea: 'phone' }}
+          wrapperStyle={{ gridArea: 'phone' }}
           listContainerStyle={{ justifyContent: 'space-around' }}
           listArray={phoneWallpaperOptions}
           title={'✧ Custom Phone Wallpaper ✧'}
         />
         <LabelledList
-          containerStyle={{ gridArea: 'mixed', padding: '1rem' }}
+          wrapperStyle={{ gridArea: 'mixed', padding: '1rem' }}
           listArray={mixedDesignOptions}
           title={'✧ Simple-semi-detailed designs'}
         />

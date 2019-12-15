@@ -7,16 +7,19 @@ import { iconBases, icons } from '../../assets/sparkle_icons/index';
 import Fieldset from '../../components/Fieldset';
 import ImageGridGallery from '../../components/ImageGridGallery';
 
-const SparkleIcons = ({ containerStyle }) => {
+const SparkleIcons = ({ wrapperStyle }) => {
   const [totalPrice, setTotalPrice] = React.useState(0);
 
-  containerStyle = {
+  wrapperStyle = {
     width: '100%',
     height: 'fit-content',
     // container needs to flex to fit child contents
     display: 'flex',
     flexDirection: 'column',
-    ...containerStyle
+    '& > *': {
+      marginBottom: theme.general.marginBottom
+    },
+    ...wrapperStyle
   };
 
   const galleryColumns = 5;
@@ -135,7 +138,7 @@ const SparkleIcons = ({ containerStyle }) => {
   };
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       {/* gallery */}
       <h2 css={theme.heading}>✧ s p a r k l e - i c o n s ✧</h2>
       <ImageGridGallery
@@ -150,7 +153,7 @@ const SparkleIcons = ({ containerStyle }) => {
           listArray={optionsList['singleIcons']}
           label={'single icons'}
           labelStyle={listLabelStyle}
-          containerStyle={{ gridArea: 'option1', ...optionContainerStyle }}
+          wrapperStyle={{ gridArea: 'option1', ...optionContainerStyle }}
         />
         <span
           css={{ gridArea: 'or', alignSelf: 'center', textAlign: 'center' }}
@@ -161,7 +164,7 @@ const SparkleIcons = ({ containerStyle }) => {
           listArray={optionsList['iconSet']}
           label={'icons set'}
           labelStyle={listLabelStyle}
-          containerStyle={{ gridArea: 'option2', ...optionContainerStyle }}
+          wrapperStyle={{ gridArea: 'option2', ...optionContainerStyle }}
         />
       </div>
       {/* base options */}
