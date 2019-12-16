@@ -27,13 +27,11 @@ const Contact = ({ wrapperStyle }) => {
 
   wrapperStyle = {
     // position children
-    display: 'grid',
-    gridTemplateRows: 'repeat(3, minmax(auto, max-content))',
-    gridTemplateAreas: `
-    'title' 'icons' 'text'
-    `,
-    justifyItems: 'center',
-    button: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    // allow the spans and buttons to be clicked
+    'button, span': {
       pointerEvents: 'auto'
     },
     ...wrapperStyle
@@ -46,10 +44,9 @@ const Contact = ({ wrapperStyle }) => {
   return (
     <div css={wrapperStyle}>
       {/* subheading */}
-      <h2 css={{ gridArea: 'title' }}>✧ c o n t a c t ✧</h2>
+      <h2>✧ c o n t a c t ✧</h2>
       {/* mini footer */}
       {miniFooter({
-        gridArea: 'icons',
         // size is mainly by width
         width: '20%',
         height: '100%',
@@ -61,7 +58,7 @@ const Contact = ({ wrapperStyle }) => {
           Discord (best method): <span ref={textAreaRef}>Jinhii#2087</span>
         </p>
         <button css={buttonStyle} onClick={copyToClipboard}>
-          {copySuccess ? `Copied!` : 'Copy me'}
+          {copySuccess ? `Copied!` : 'Copy'}
         </button>
       </div>
     </div>
