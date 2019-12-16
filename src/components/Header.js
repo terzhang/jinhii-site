@@ -2,11 +2,11 @@
 import { jsx } from '@emotion/core';
 import theme from '../theme';
 
-const Header = ({ containerStyle }) => {
-  containerStyle = {
+const Header = ({ wrapperStyle }) => {
+  wrapperStyle = {
     display: 'flex',
     flexDirection: 'column',
-    ...containerStyle
+    ...wrapperStyle
   };
 
   const titleStyle = {
@@ -19,7 +19,7 @@ const Header = ({ containerStyle }) => {
   };
 
   return (
-    <div css={containerStyle}>
+    <div css={wrapperStyle}>
       <h1 css={titleStyle}>{theme.header.title}</h1>
     </div>
   );
