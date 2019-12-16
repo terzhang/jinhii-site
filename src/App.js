@@ -13,6 +13,25 @@ const About = lazy(() => import('./pages/About'));
 const Commissions = lazy(() => import('./pages/Commissions'));
 const ToS = lazy(() => import('./pages/ToS'));
 const Contact = lazy(() => import('./pages/Contact'));
+const typesPath = './pages/types/';
+// commission types
+const SparkleIcons = lazy(() => import(typesPath + 'SparkleIcons'));
+const Chibis = lazy(() => import(typesPath + 'Chibis'));
+const Normal = lazy(() => import(typesPath + 'Normal'));
+const Pixels = lazy(() => import(typesPath + 'Pixels'));
+const EmotesBadges = lazy(() => import(typesPath + 'EmotesBadges'));
+const KofiEmotes = lazy(() => import(typesPath + 'KofiEmotes'));
+const CustomUgc = lazy(() => import(typesPath + 'CustomUgc'));
+const CustomWallpaper = lazy(() => import(typesPath + 'CustomWallpaper'));
+const Logos = lazy(() => import(typesPath + 'Logos'));
+const TypeButtons = lazy(() => import('./components/TypeButtons'));
+
+const pageWrapper = {
+  // direct descendants gets a bottom margin to space out
+  '& > *': {
+    marginBottom: theme.general.marginBottom
+  }
+};
 
 function App() {
   const scrollContainer = {
@@ -109,7 +128,21 @@ function App() {
           <Router css={bodyStyle}>
             <Home path='/' default />
             <About path='about' />
-            <Commissions path='commissions' />
+            <Commissions path='commissions'>
+              <TypeButtons path='/' default wrapperStyle={pageWrapper} />
+              <SparkleIcons path='sparkle_icons' wrapperStyle={pageWrapper} />
+              <Chibis path='chibis' wrapperStyle={pageWrapper} />
+              <Normal path='normal' wrapperStyle={pageWrapper} />
+              <Pixels path='pixels' wrapperStyle={pageWrapper} />
+              <EmotesBadges path='emotes_badges' wrapperStyle={pageWrapper} />
+              <KofiEmotes path='kofi_emotes' wrapperStyle={pageWrapper} />
+              <CustomUgc path='custom_ugc' wrapperStyle={pageWrapper} />
+              <CustomWallpaper
+                path='custom_wallpaper'
+                wrapperStyle={pageWrapper}
+              />
+              <Logos path='logos' wrapperStyle={pageWrapper} />
+            </Commissions>
             <ToS path='tos' />
             <Contact path='contact' />
           </Router>
