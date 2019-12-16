@@ -41,10 +41,7 @@ function App() {
     height: 'auto',
     width: '100vw',
     minHeight: '100vh', // full scrollable height always
-    overflowY: 'scroll',
-    backgroundImage: `url(${theme.background.uri})`, // background uri
-    backgroundAttachment: 'scroll', // bg image scrolls with content
-    backgroundSize: 'cover' // stretch to fit container... does not shrink
+    overflowY: 'scroll'
   };
 
   const contentContainer = {
@@ -74,6 +71,12 @@ function App() {
   };
 
   const globalStyle = {
+    body: {
+      backgroundImage: `url(${theme.background.uri})`, // background uri
+      backgroundAttachment: 'fixed', // bg image scrolls with content
+      backgroundSize: 'cover', // stretch to fit container... does not shrink
+      backgroundRepeat: 'no-repeat'
+    },
     a: {
       pointerEvents: 'auto',
       textDecoration: 'none'
