@@ -8,13 +8,8 @@ const ToS = ({ wrapperStyle }) => {
     marginLeft: '5%', // to indent texts a bit
     marginRight: '5%',
     // position children
-    display: 'grid',
-    gridTemplateColumns: 'auto auto',
-    gridTemplateRows: 'auto',
-    gridTemplateAreas: `
-    'title' 'text'
-    `,
-    justifyItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
     pointerEvents: 'auto',
     ...wrapperStyle
   };
@@ -70,8 +65,8 @@ const ToS = ({ wrapperStyle }) => {
           {`By commissioning me, you are agreeing to my terms of service,
           so please read it thoroughly before commissioning!`}
         </strong>
-        <RenderList listArray={terms} />
       </p>
+      <RenderList listArray={terms} />
     </div>
   );
 };
