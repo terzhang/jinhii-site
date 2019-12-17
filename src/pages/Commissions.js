@@ -2,7 +2,6 @@
 import { jsx } from '@emotion/core';
 import { Link } from '@reach/router';
 import React from 'react';
-import theme from '../theme';
 
 const Commissions = ({ wrapperStyle, children }) => {
   wrapperStyle = {
@@ -11,9 +10,6 @@ const Commissions = ({ wrapperStyle, children }) => {
     flexDirection: 'column',
     height: '100%',
     // commission page's direct descendants also gets a bottom margin
-    '& > *': {
-      marginBottom: theme.general.marginBottom
-    },
     ...wrapperStyle
   };
 
