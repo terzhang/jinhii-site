@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import React from 'react';
 
 const ImageGridGallery = ({
   requireContext,
@@ -43,15 +44,21 @@ const ImageGridGallery = ({
   };
 
   // display using require.context
-  const galleryByContext = () =>
-    requireContext.keys().map(fileName => {
-      let src = requireContext(fileName);
-      return (
-        <a href={src} key={fileName} css={imageWrapperStyle}>
-          <img src={src} alt='' css={imageStyle} />
-        </a>
-      );
-    });
+  const galleryByContext = React.useMemo(
+    () =>
+      requireContext
+        .keys()
+        .sort()
+        .map(fileName => {
+          let src = requireContext(fileName);
+          return (
+            <a href={src} key={fileName} css={imageWrapperStyle}>
+              <img src={src} alt='' css={imageStyle} />
+            </a>
+          );
+        }),
+    [requireContext, imageStyle, imageWrapperStyle]
+  );
 
   // display using cdn links
   const galleryByCdn = () =>
@@ -63,7 +70,7 @@ const ImageGridGallery = ({
 
   return (
     <div css={wrapperStyle}>
-      {requireContext ? galleryByContext() : galleryByCdn()}
+      {requireContext ? galleryByContext : galleryByCdn()}
     </div>
   );
 };
