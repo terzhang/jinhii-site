@@ -7,7 +7,6 @@ import useTextCopy from '../hooks/useTextCopy';
 
 const Contact = ({ wrapperStyle }) => {
   const [filteredIcons, setFilteredIcons] = useState({});
-
   // filter the icons based on the iconSelected array on mount and recalculates when the array changes
   useEffect(() => {
     const iconSelected = ['discord', 'deviantArt', 'email'];

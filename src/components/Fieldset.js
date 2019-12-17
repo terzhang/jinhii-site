@@ -24,9 +24,9 @@ const Fieldset = ({
   legendStyle = {
     ...theme.subheading,
     textAlign: 'center',
-    position: 'absolute',
-    // shift it up relative to parent to sit on border
-    top: `calc((-${theme.subheading.fontSize} / 2 ) - ${wrapperStyle.borderWidth})`,
+    position: 'relative',
+    // this centers the legend on the top border
+    margin: 'auto',
     backgroundColor: theme.content.backgroundColor,
     alignSelf: 'center',
     ...legendStyle
