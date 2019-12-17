@@ -99,7 +99,11 @@ function App() {
     minHeight: 'fit-content',
     alignContent: 'center',
     paddingTop: '2rem',
-    paddingBottom: '2rem'
+    paddingBottom: '2rem',
+    // select all the direct descendants of each route component
+    '& > * > *': {
+      marginBottom: theme.general.marginBottom
+    }
   };
 
   const Loader = ({ wrapperStyle }) => (
@@ -131,7 +135,7 @@ function App() {
           <Router css={bodyStyle}>
             <Home path='/' default />
             <About path='about' />
-            <Commissions path='commissions'>
+            <Commissions path='commissions' wrapperStyle={pageWrapper}>
               <TypeButtons path='/' default wrapperStyle={pageWrapper} />
               <SparkleIcons path='sparkle_icons' wrapperStyle={pageWrapper} />
               <Chibis path='chibis' wrapperStyle={pageWrapper} />
