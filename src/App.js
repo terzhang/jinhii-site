@@ -89,7 +89,8 @@ function App() {
       fontSize: '1.25rem',
       textAlign: 'start'
     },
-    p: { ...theme.text }
+    p: { ...theme.text },
+    '*': { border: 'none' }
   };
 
   const bodyStyle = {

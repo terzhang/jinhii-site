@@ -9,7 +9,7 @@ const theme = {
     paddingBottom: '5rem',
     padding: '5rem'
   },
-  header: { title: '【✧JINHII✧】', fontSize: '3rem' },
+  header: { title: '【✧JINHII✧】', fontSize: '3rem', letterSpacing: '0.5rem' },
   button: {
     backgroundColor: '#73509E',
     borderRadius: '2rem',
@@ -18,7 +18,8 @@ const theme = {
     fontSize: '1rem',
     fontWeight: '400',
     padding: '1rem',
-    margin: '0.5rem'
+    margin: '0.5rem',
+    letterSpacing: '0.25rem'
   },
   button_hover: {
     backgroundColor: '#E199B5'
@@ -29,7 +30,8 @@ const theme = {
     color: '#73509E',
     fontSize: '1.5rem',
     fontWeight: '400',
-    padding: '1.5rem'
+    padding: '1.5rem',
+    letterSpacing: '0.25rem'
   },
   typesButton_hover: {
     backgroundColor: '#E199B5'
@@ -64,7 +66,8 @@ const theme = {
     },
     fontSize: '1rem',
     fontWeight: '400',
-    lineHeight: '1.5'
+    lineHeight: '1.5',
+    letterSpacing: '0.025rem'
   },
   input: { fontSize: '1rem', fontWeight: '200', borderRadius: '0 1rem 1rem 0' }
 };

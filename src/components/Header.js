@@ -12,7 +12,7 @@ const Header = ({ wrapperStyle }) => {
   const titleStyle = {
     // fit to parent container
     gridColumn: '100%',
-    fontSize: theme.header.fontSize,
+    ...theme.header,
     // centered and centered on content
     justifySelf: 'center',
     alignSelf: 'center'
