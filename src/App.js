@@ -26,9 +26,9 @@ const CustomWallpaper = lazy(() => import(typesPath + 'CustomWallpaper'));
 const Logos = lazy(() => import(typesPath + 'Logos'));
 const TypeButtons = lazy(() => import('./components/TypeButtons'));
 
-const pageWrapper = {
-  // direct descendants gets a bottom margin to space out
-  '& > *': {
+const innerChildWrapper = {
+  // direct descendants of child gets a bottom margin to space out
+  '& > * > *': {
     marginBottom: theme.general.marginBottom
   }
 };
@@ -102,9 +102,7 @@ function App() {
     paddingTop: '2rem',
     paddingBottom: '2rem',
     // select all the direct descendants of each route component
-    '& > * > *': {
-      marginBottom: theme.general.marginBottom
-    }
+    ...innerChildWrapper
   };
 
   const Loader = ({ wrapperStyle }) => (
@@ -136,20 +134,17 @@ function App() {
           <Router css={bodyStyle}>
             <Home path='/' default />
             <About path='about' />
-            <Commissions path='commissions' wrapperStyle={pageWrapper}>
-              <TypeButtons path='/' default wrapperStyle={pageWrapper} />
-              <SparkleIcons path='sparkle_icons' wrapperStyle={pageWrapper} />
-              <Chibis path='chibis' wrapperStyle={pageWrapper} />
-              <Normal path='normal' wrapperStyle={pageWrapper} />
-              <Pixels path='pixels' wrapperStyle={pageWrapper} />
-              <EmotesBadges path='emotes_badges' wrapperStyle={pageWrapper} />
-              <KofiEmotes path='kofi_emotes' wrapperStyle={pageWrapper} />
-              <CustomUgc path='custom_ugc' wrapperStyle={pageWrapper} />
-              <CustomWallpaper
-                path='custom_wallpaper'
-                wrapperStyle={pageWrapper}
-              />
-              <Logos path='logos' wrapperStyle={pageWrapper} />
+            <Commissions path='commissions' wrapperStyle={innerChildWrapper}>
+              <TypeButtons path='/' default />
+              <SparkleIcons path='sparkle_icons' />
+              <Chibis path='chibis' />
+              <Normal path='normal' />
+              <Pixels path='pixels' />
+              <EmotesBadges path='emotes_badges' />
+              <KofiEmotes path='kofi_emotes' />
+              <CustomUgc path='custom_ugc' />
+              <CustomWallpaper path='custom_wallpaper' />
+              <Logos path='logos' />
             </Commissions>
             <ToS path='tos' />
             <Contact path='contact' />
