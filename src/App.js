@@ -134,7 +134,7 @@ function App() {
           <Router css={bodyStyle}>
             <Home path='/' default />
             <About path='about' />
-            <Commissions path='commissions' wrapperStyle={innerChildWrapper}>
+            <Commissions path='commissions'>
               <TypeButtons path='/' default />
               <SparkleIcons path='sparkle_icons' />
               <Chibis path='chibis' />

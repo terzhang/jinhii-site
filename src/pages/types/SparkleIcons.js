@@ -16,9 +16,6 @@ const SparkleIcons = ({ wrapperStyle }) => {
     // container needs to flex to fit child contents
     display: 'flex',
     flexDirection: 'column',
-    '& > *': {
-      marginBottom: theme.general.marginBottom
-    },
     ...wrapperStyle
   };
 

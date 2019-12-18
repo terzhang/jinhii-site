@@ -2,6 +2,8 @@
 import { jsx } from '@emotion/core';
 import { Link } from '@reach/router';
 import React from 'react';
+import theme from '../theme';
+import ScrollTopButton from '../components/ScrollTopButton';
 
 const Commissions = ({ wrapperStyle, children }) => {
   wrapperStyle = {
@@ -12,6 +14,23 @@ const Commissions = ({ wrapperStyle, children }) => {
     // commission page's direct descendants also gets a bottom margin
     ...wrapperStyle
   };
+
+  const scrollButtonStyle = {
+    display: 'block',
+    position: 'fixed',
+    bottom: '0'
+  };
+
+  // target the children of each type components
+  // each type component is wrapped by another div due to router grouping so...
+  // ... target the children of the children of our children
+  const typeWrapperStyle = {
+    '& > * > *': {
+      marginBottom: theme.general.marginBottom
+    }
+  };
+
+  let child = React.Children.only(children);
 
   return (
     <div css={wrapperStyle}>
@@ -50,7 +69,8 @@ const Commissions = ({ wrapperStyle, children }) => {
           listed!`}
         </em>
       </p>
-      {children}
+      <ScrollTopButton buttonStyle={scrollButtonStyle} offset={1000} />
+      <child.type {...child.props} css={typeWrapperStyle} />
     </div>
   );
 };
