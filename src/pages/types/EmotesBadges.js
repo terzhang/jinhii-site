@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import React from 'react';
-import { emotes, subBadges } from '../../assets/emoteBadges/index';
+import * as emotes from '../../assets/emoteBadges/emotes/index';
+import * as subBadges from '../../assets/emoteBadges/subBadges/index';
 import ImageGridGallery from '../../components/ImageGridGallery';
 import LabelledList from '../../components/LabelledList';
 import Fieldset from '../../components/Fieldset';
@@ -78,11 +79,53 @@ const EmotesBadges = ({ wrapperStyle }) => {
     { label: 'important notes/questions:', placeholder: '' }
   ];
 
+  const { casil, chibi, gif, pixel, rice, wednesdae: wednesdaeEmotes } = emotes;
+  const {
+    boba,
+    jinhii,
+    resetti,
+    sailor_moon,
+    wednesdae: wednesdaeBadges
+  } = subBadges;
+
+  const EMOTE_COLUMNS = 5;
+
+  const emoteWrapper = {
+    width: `calc(100% / ${EMOTE_COLUMNS})`,
+    height: 'auto',
+    img: { objectFit: 'contain' }
+  };
+
   return (
     <div css={wrapperStyle}>
-      {/* emotes */}
       <h2>✧ t w i t c h / d i s c o r d - e m o t e s ✧</h2>
-      <ImageGridGallery requireContext={emotes} />
+      {/* emote gallery */}
+      <div css={{ marginLeft: '10%', marginRight: '10%' }}>
+        <ImageGridGallery
+          requireContext={wednesdaeEmotes}
+          imageWrapperStyle={emoteWrapper}
+        />
+        <ImageGridGallery
+          requireContext={gif}
+          imageWrapperStyle={emoteWrapper}
+        />
+        <ImageGridGallery
+          requireContext={rice}
+          imageWrapperStyle={emoteWrapper}
+        />
+        <ImageGridGallery
+          requireContext={chibi}
+          imageWrapperStyle={emoteWrapper}
+        />
+        <ImageGridGallery
+          requireContext={casil}
+          imageWrapperStyle={emoteWrapper}
+        />
+        <ImageGridGallery
+          requireContext={pixel}
+          imageWrapperStyle={emoteWrapper}
+        />
+      </div>
       {/* twitch and discord emotes options */}
       <div css={optionSectionStyle}>
         <LabelledList
@@ -108,7 +151,13 @@ const EmotesBadges = ({ wrapperStyle }) => {
       />
       {/* sub badges */}
       <h2>✧ t w i t c h - s u b/b i t - b a d g e s ✧</h2>
-      <ImageGridGallery requireContext={subBadges} />
+      <>
+        <ImageGridGallery requireContext={boba} />
+        <ImageGridGallery requireContext={sailor_moon} />
+        <ImageGridGallery requireContext={wednesdaeBadges} />
+        <ImageGridGallery requireContext={jinhii} />
+        <ImageGridGallery requireContext={resetti} />
+      </>
       {/* sub badges options */}
       <LabelledList listArray={subBadgeOptions} title={'✧ Sub Badges ✧'} />
       <p

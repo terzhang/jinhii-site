@@ -1,7 +1,3 @@
-export const emotes = require.context('./emotes', false, /\.(png|jpe?g|svg)$/);
-
-export const subBadges = require.context(
-  './subBadges',
-  false,
-  /\.(png|jpe?g|svg)$/
-);
+import * as emotes from './emotes/index';
+import * as subBadges from './subBadges/index';
+export { emotes, subBadges };
