@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 const ImageGridGallery = ({
   requireContext,
+  mode = 'merge',
   imageLinks = null,
   gridSize = { width: '10vw', height: '10vw' },
   wrapperStyle,
@@ -43,36 +44,80 @@ const ImageGridGallery = ({
     ...imageStyle
   };
 
-  // display using require.context
-  const galleryByContext = React.useMemo(
+  /* // display using cdn links
+  const galleryByCdn = useCallback(
     () =>
-      requireContext
+      imageLinks.map(link => (
+        <a href={link} css={imageWrapperStyle}>
+          <img src={link} alt='' css={imageStyle} />
+        </a>
+      )),
+    [imageLinks, imageStyle, imageWrapperStyle]
+  ); */
+
+  // display using require.context
+  const galleryByContext = useMemo(
+    () => context =>
+      context
         .keys()
         .sort()
         .map(fileName => {
-          let src = requireContext(fileName);
+          let src = context(fileName);
           return (
             <a href={src} key={fileName} css={imageWrapperStyle}>
               <img src={src} alt='' css={imageStyle} />
             </a>
           );
         }),
-    [requireContext, imageStyle, imageWrapperStyle]
+    [imageStyle, imageWrapperStyle]
   );
 
-  // display using cdn links
-  const galleryByCdn = () =>
-    imageLinks.map(link => (
-      <a href={link} css={imageWrapperStyle}>
-        <img src={link} alt='' css={imageStyle} />
-      </a>
-    ));
-
-  return (
-    <div css={wrapperStyle}>
-      {requireContext ? galleryByContext : galleryByCdn()}
-    </div>
+  // reduce each context into one big gallery
+  const mergeGalleries = useMemo(
+    () => contexts => {
+      const reducer = (pacMan, context) =>
+        pacMan.concat(galleryByContext(context));
+      return <div css={wrapperStyle}>{contexts.reduce(reducer, [])}</div>;
+    },
+    [galleryByContext, wrapperStyle]
   );
+
+  // returns a list of galleries given each context
+  const listGalleries = useMemo(
+    () => contexts =>
+      contexts.map((context, index) => (
+        <div css={wrapperStyle} key={context[index]}>
+          {galleryByContext(context)}
+        </div>
+      )),
+    [galleryByContext, wrapperStyle]
+  );
+
+  const gallery = useMemo(() => {
+    let newGallery;
+    // check if require context is an array
+    if (Array.isArray(requireContext)) {
+      newGallery =
+        mode === 'merge'
+          ? mergeGalleries(requireContext)
+          : listGalleries(requireContext);
+    } else {
+      // just one context, set the gallery
+      newGallery = (
+        <div css={wrapperStyle}>{galleryByContext(requireContext)}</div>
+      );
+    }
+    return newGallery;
+  }, [
+    galleryByContext,
+    listGalleries,
+    mergeGalleries,
+    mode,
+    requireContext,
+    wrapperStyle
+  ]);
+
+  return gallery;
 };
 
 export default ImageGridGallery;
