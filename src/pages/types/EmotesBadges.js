@@ -88,7 +88,7 @@ const EmotesBadges = ({ wrapperStyle }) => {
     wednesdae: wednesdaeBadges
   } = subBadges;
 
-  const EMOTE_COLUMNS = 5;
+  const EMOTE_COLUMNS = 6;
 
   const emoteWrapper = {
     width: `calc(100% / ${EMOTE_COLUMNS})`,
@@ -100,30 +100,20 @@ const EmotesBadges = ({ wrapperStyle }) => {
     <div css={wrapperStyle}>
       <h2>✧ t w i t c h / d i s c o r d - e m o t e s ✧</h2>
       {/* emote gallery */}
-      <div css={{ marginLeft: '10%', marginRight: '10%' }}>
+      <div>
         <ImageGridGallery
-          requireContext={wednesdaeEmotes}
+          requireContext={[wednesdaeEmotes, gif]}
+          mode='merge'
           imageWrapperStyle={emoteWrapper}
         />
         <ImageGridGallery
-          requireContext={gif}
-          imageWrapperStyle={emoteWrapper}
-        />
-        <ImageGridGallery
-          requireContext={rice}
-          imageWrapperStyle={emoteWrapper}
-        />
-        <ImageGridGallery
-          requireContext={chibi}
-          imageWrapperStyle={emoteWrapper}
-        />
-        <ImageGridGallery
-          requireContext={casil}
-          imageWrapperStyle={emoteWrapper}
-        />
-        <ImageGridGallery
-          requireContext={pixel}
-          imageWrapperStyle={emoteWrapper}
+          requireContext={[rice, chibi, pixel]}
+          mode='disjoint'
+          wrapperStyle={{
+            marginLeft: 'calc(100% * 1/6)',
+            marginRight: 'calc(100% * 1/6)'
+          }}
+          imageWrapperStyle={[emoteWrapper, { width: `calc(100% / 4)` }]}
         />
       </div>
       {/* twitch and discord emotes options */}

@@ -30,6 +30,7 @@ const Commissions = ({ wrapperStyle, children }) => {
     }
   };
 
+  // https://reactjs.org/docs/react-api.html#reactchildren
   let child = React.Children.only(children);
 
   return (
