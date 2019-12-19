@@ -79,7 +79,7 @@ const EmotesBadges = ({ wrapperStyle }) => {
     { label: 'important notes/questions:', placeholder: '' }
   ];
 
-  const { casil, chibi, gif, pixel, rice, wednesdae: wednesdaeEmotes } = emotes;
+  const { chibi, gif, pixel, rice, wednesdae: wednesdaeEmotes } = emotes;
   const {
     boba,
     jinhii,
@@ -141,13 +141,12 @@ const EmotesBadges = ({ wrapperStyle }) => {
       />
       {/* sub badges */}
       <h2>✧ t w i t c h - s u b/b i t - b a d g e s ✧</h2>
-      <>
-        <ImageGridGallery requireContext={boba} />
-        <ImageGridGallery requireContext={sailor_moon} />
-        <ImageGridGallery requireContext={wednesdaeBadges} />
-        <ImageGridGallery requireContext={jinhii} />
-        <ImageGridGallery requireContext={resetti} />
-      </>
+      <div>
+        <ImageGridGallery
+          requireContext={[boba, sailor_moon, wednesdaeBadges, jinhii, resetti]}
+          mode='disjoint'
+        />
+      </div>
       {/* sub badges options */}
       <LabelledList listArray={subBadgeOptions} title={'✧ Sub Badges ✧'} />
       <p

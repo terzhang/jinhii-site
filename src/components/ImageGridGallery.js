@@ -83,10 +83,10 @@ const ImageGridGallery = ({
   );
 
   // returns a list of galleries given each context
-  const listGalleries = useMemo(
+  const disjointGalleries = useMemo(
     () => contexts =>
-      contexts.map((context, index) => (
-        <div css={wrapperStyle} key={context[index]}>
+      contexts.map(context => (
+        <div css={wrapperStyle} key={context.id}>
           {galleryByContext(context)}
         </div>
       )),
@@ -100,7 +100,7 @@ const ImageGridGallery = ({
       newGallery =
         mode === 'merge'
           ? mergeGalleries(requireContext)
-          : listGalleries(requireContext);
+          : disjointGalleries(requireContext);
     } else {
       // just one context, set the gallery
       newGallery = (
@@ -110,7 +110,7 @@ const ImageGridGallery = ({
     return newGallery;
   }, [
     galleryByContext,
-    listGalleries,
+    disjointGalleries,
     mergeGalleries,
     mode,
     requireContext,
