@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useThrottle from './useThrottle';
 
 export const useScrollToTop = (offset = 300) => {
   const [mayScroll, setMayScroll] = useState(false);
@@ -19,18 +20,21 @@ export const useScrollToTop = (offset = 300) => {
     }
   };
 
+  // set state to whether we can scroll depending on page y offset
+  const onScroll = e => {
+    if (window.pageYOffset > offset) {
+      setMayScroll(true);
+    } else {
+      setMayScroll(false);
+    }
+  };
+
+  const [throttledScroll] = useThrottle(onScroll);
+
   useEffect(() => {
-    // set state to whether we can scroll depending on page y offset
-    const onScroll = e => {
-      if (window.pageYOffset > offset) {
-        setMayScroll(true);
-      } else {
-        setMayScroll(false);
-      }
-    };
-    document.addEventListener('scroll', onScroll);
-    return () => document.removeEventListener('scroll', onScroll);
-  }, [offset]);
+    document.addEventListener('scroll', throttledScroll);
+    return () => document.removeEventListener('scroll', throttledScroll);
+  }, [offset, throttledScroll]);
 
   return { mayScroll, scrollToTop };
 };
