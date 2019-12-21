@@ -21,9 +21,9 @@ const Form = ({ onSubmit, wrapperStyle, inputList }) => {
     display: 'grid',
     gridTemplateRows: `repeat(${inputList.length}, minmax(0, 1fr))`,
     gridTemplateColumns:
-      '[outer-start] 1fr [button-start] 1fr [button-end] 1fr [outer-end]', // cause overflowing
+      '[outer-start] 1fr [button-start] 1fr [button-end] 1fr [outer-end]',
     // estimated along with bar style's padding
-    /* gridRowGap: '2%', */ gridColumnGap: '1%',
+    gridColumnGap: '1%',
     pointerEvents: 'auto',
     p: {
       textAlign: 'end',
@@ -37,9 +37,6 @@ const Form = ({ onSubmit, wrapperStyle, inputList }) => {
   // the inputs
   const inputStyle = {
     gridColumn: '2 / 3',
-    /* gridColumn: 'input', */
-    /* width: '100%',
-    height: '100%', */
     maxHeight: 'max-content',
     // space outside border
     margin: '5%',
@@ -58,6 +55,14 @@ const Form = ({ onSubmit, wrapperStyle, inputList }) => {
     ':hover': theme.button_hover
   };
 
+  // each time the input value changes...
+  // replace the state with old state overwritten by new state
+  // debounce the event.target.value to limit state update
+  const onChange = newField => {
+    // current key's label as the new key and the current input value as value
+    setFields({ ...fields, ...newField });
+  };
+
   // render a list of inputs given an input list
   const renderInputs = list => {
     const array = list.map((key, index) => {
@@ -73,20 +78,19 @@ const Form = ({ onSubmit, wrapperStyle, inputList }) => {
         placeHolder = key.placeholder;
       }
 
-      // replace the state with a new state that's the old state spread...
-      // with current key's label as the new key and the current input value as value
-      const onChange = event =>
-        setFields({ ...fields, [key.label]: event.target.value });
-
       // generate inputs & bars via an array
       return (
         <React.Fragment key={inputLabel}>
           <p>{inputLabel}</p>
           <input
             type='text'
+            name={inputLabel}
             // if initial value is undefined, component becomes uncontrolled
             value={inputValue || ''}
-            onChange={onChange}
+            onChange={event => {
+              const { name, value } = event.target;
+              onChange({ [name]: value });
+            }}
             css={inputStyle}
             placeholder={placeHolder}
           />
