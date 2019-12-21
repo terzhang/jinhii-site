@@ -13,7 +13,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "svg-to-jsx": "svgr < svgr/up.svg > src/components/up.js --svgo-config svgr/svgo.json --replace-attr-values '#000={props.stroke}'"
   },
   "eslintConfig": {
     "extends": "react-app"
