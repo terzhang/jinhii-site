@@ -8,9 +8,9 @@ export const ScrollTopButton = ({ buttonStyle, offset = 300 }) => {
   const { mayScroll, scrollToTop } = useScrollToTop(offset);
 
   buttonStyle = {
-    borderRadius: '20rem 20rem 0 0',
+    borderRadius: '2rem 2rem 0 0',
     backgroundColor: 'pink',
-    color: 'white',
+    color: '#FFF',
     width: '8rem',
     height: '5rem',
     visibility: mayScroll ? 'visible' : 'hidden',
@@ -33,7 +33,7 @@ export const ScrollTopButton = ({ buttonStyle, offset = 300 }) => {
 
   return (
     <button css={buttonStyle} onClick={() => scrollToTop()}>
-      <Up fill='#FFF' height='100%' />
+      <Up fill={buttonStyle.color} stroke={buttonStyle.color} height='100%' />
     </button>
   );
 };

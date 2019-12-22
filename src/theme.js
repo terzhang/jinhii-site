@@ -10,6 +10,11 @@ const theme = {
     padding: '5rem'
   },
   header: { title: '【✧JINHII✧】', fontSize: '3rem', letterSpacing: '0.5rem' },
+  scroll_to_top_button: {
+    backgroundColor: 'pink',
+    color: 'white',
+    ':hover': { backgroundColor: '#73509E' }
+  },
   button: {
     backgroundColor: '#73509E',
     borderRadius: '2rem',

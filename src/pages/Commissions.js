@@ -18,7 +18,12 @@ const Commissions = ({ wrapperStyle, children }) => {
   const scrollButtonStyle = {
     display: 'block',
     position: 'fixed',
-    bottom: '0'
+    bottom: '0',
+    maxWidth: '7vw',
+    minWidth: '5rem',
+    maxHeight: 'calc(7vw * 0.6)',
+    minHeight: 'calc(5rem * 0.6)',
+    ...theme.scroll_to_top_button
   };
 
   // target the children of each type components
@@ -70,7 +75,11 @@ const Commissions = ({ wrapperStyle, children }) => {
           listed!`}
         </em>
       </p>
-      <ScrollTopButton buttonStyle={scrollButtonStyle} offset={1000} />
+      <ScrollTopButton
+        buttonStyle={scrollButtonStyle}
+        offset={1000}
+        innerColor={'white'}
+      />
       <child.type {...child.props} css={typeWrapperStyle} />
     </div>
   );
